@@ -1,0 +1,76 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            13:15:f1:ed:c5:19:a1:bd:f7:e6:05:28:3e:14:69:10:e0:49:59:e8
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=*.babysittingil.com
+        Validity
+            Not Before: Jan 11 19:02:19 2023 GMT
+            Not After : Jan  8 19:02:19 2033 GMT
+        Subject: CN=*.babysittingil.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:b2:cd:fb:1c:27:ee:97:4d:96:0a:9d:c7:72:ec:
+                    eb:c4:47:a0:fb:a4:54:bc:bc:fb:16:72:02:2d:88:
+                    74:d8:21:3a:df:65:6a:db:82:e1:fc:cb:71:69:4a:
+                    95:aa:47:54:5f:c4:15:40:9e:28:87:32:bf:60:f3:
+                    e3:65:ad:00:30:74:1b:2f:48:5f:d8:03:e9:ce:90:
+                    30:ab:5f:52:34:ea:bf:63:93:8d:8f:62:0f:36:f7:
+                    9e:17:ca:d7:4c:ab:c0:11:51:2f:59:c7:42:34:fe:
+                    01:c6:6f:bd:40:5b:56:e9:c0:46:96:be:01:b7:e1:
+                    fb:02:43:d6:59:2c:6b:aa:48:a3:e7:1e:62:19:32:
+                    c1:72:ac:72:0c:52:70:59:2e:f1:8b:a3:e7:37:27:
+                    aa:69:04:53:50:d8:c1:b7:85:6a:5a:a7:d7:99:f4:
+                    22:c2:62:ec:6a:f0:ed:4d:24:5d:df:4e:c1:22:b9:
+                    35:ad:45:d8:cf:de:f4:d1:00:29:a7:56:28:63:70:
+                    54:24:af:c3:13:f6:6c:bf:12:c9:cd:cb:67:2b:45:
+                    9d:3e:0f:e6:ac:e4:eb:c8:0b:3f:85:61:42:10:9d:
+                    6b:35:01:7a:03:94:50:c8:50:52:8e:9c:46:a0:0f:
+                    55:38:c9:e7:95:92:f0:1e:03:c7:cb:f4:d1:a8:f5:
+                    64:f3
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Alternative Name: 
+                IP Address:192.168.68.107, DNS:babysittingil.com, DNS:www.babysittingil.com, DNS:babysitting.il
+            X509v3 Subject Key Identifier: 
+                67:07:22:58:BB:55:57:B1:02:9A:47:AD:F8:1C:4B:0A:39:86:23:62
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        21:10:84:81:a4:34:66:38:18:7b:ce:17:ba:6a:1e:36:e4:72:
+        ce:29:85:fa:41:ff:1e:f2:e9:d4:37:e4:c9:7e:fa:7f:66:f0:
+        6d:11:7c:d0:2c:89:d6:2c:e7:ea:89:a1:6b:c1:67:de:f3:0f:
+        25:26:e3:5f:81:10:29:8d:a8:47:d9:a9:33:21:6a:25:5c:14:
+        15:be:39:10:b1:89:63:75:6a:5c:27:a3:37:f5:60:f0:b7:10:
+        1c:07:da:24:a3:b7:42:cc:47:99:fd:90:f4:f7:7e:2c:51:9b:
+        07:99:f4:44:a2:34:06:b3:9e:07:15:25:7a:55:61:d8:b2:73:
+        d2:26:4f:6b:d1:c7:3c:bf:be:d5:8a:d2:01:c4:52:9b:3a:9a:
+        c5:87:26:c7:1a:c1:fe:dc:11:cf:fe:a7:52:1e:d8:3c:92:ed:
+        d3:d8:ab:46:7d:46:36:92:f4:ee:86:3a:b9:33:d0:f7:2a:06:
+        a6:48:7e:11:1f:1c:be:f1:c0:14:9a:d3:c5:5e:21:ac:b8:7a:
+        f1:4e:75:e1:a2:88:79:97:63:d3:3f:a4:4c:12:9c:29:7d:c9:
+        11:09:03:0f:a7:d2:fb:d7:aa:e2:7c:56:92:84:24:23:41:e7:
+        06:6d:e5:a0:bd:c0:27:15:77:07:e3:9e:73:df:58:0d:65:8d:
+        06:42:54:40
+-----BEGIN CERTIFICATE-----
+MIIDNjCCAh6gAwIBAgIUExXx7cUZob335gUoPhRpEOBJWegwDQYJKoZIhvcNAQEL
+BQAwHjEcMBoGA1UEAwwTKi5iYWJ5c2l0dGluZ2lsLmNvbTAeFw0yMzAxMTExOTAy
+MTlaFw0zMzAxMDgxOTAyMTlaMB4xHDAaBgNVBAMMEyouYmFieXNpdHRpbmdpbC5j
+b20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyzfscJ+6XTZYKncdy
+7OvER6D7pFS8vPsWcgItiHTYITrfZWrbguH8y3FpSpWqR1RfxBVAniiHMr9g8+Nl
+rQAwdBsvSF/YA+nOkDCrX1I06r9jk42PYg82954XytdMq8ARUS9Zx0I0/gHGb71A
+W1bpwEaWvgG34fsCQ9ZZLGuqSKPnHmIZMsFyrHIMUnBZLvGLo+c3J6ppBFNQ2MG3
+hWpap9eZ9CLCYuxq8O1NJF3fTsEiuTWtRdjP3vTRACmnVihjcFQkr8MT9my/EsnN
+y2crRZ0+D+as5OvICz+FYUIQnWs1AXoDlFDIUFKOnEagD1U4yeeVkvAeA8fL9NGo
+9WTzAgMBAAGjbDBqMEkGA1UdEQRCMECHBMCoRGuCEWJhYnlzaXR0aW5naWwuY29t
+ghV3d3cuYmFieXNpdHRpbmdpbC5jb22CDmJhYnlzaXR0aW5nLmlsMB0GA1UdDgQW
+BBRnByJYu1VXsQKaR634HEsKOYYjYjANBgkqhkiG9w0BAQsFAAOCAQEAIRCEgaQ0
+ZjgYe84XumoeNuRyzimF+kH/HvLp1DfkyX76f2bwbRF80CyJ1izn6omha8Fn3vMP
+JSbjX4EQKY2oR9mpMyFqJVwUFb45ELGJY3VqXCejN/Vg8LcQHAfaJKO3QsxHmf2Q
+9Pd+LFGbB5n0RKI0BrOeBxUlelVh2LJz0iZPa9HHPL++1YrSAcRSmzqaxYcmxxrB
+/twRz/6nUh7YPJLt09irRn1GNpL07oY6uTPQ9yoGpkh+ER8cvvHAFJrTxV4hrLh6
+8U514aKIeZdj0z+kTBKcKX3JEQkDD6fS+9eq4nxWkoQkI0HnBm3loL3AJxV3B+Oe
+c99YDWWNBkJUQA==
+-----END CERTIFICATE-----
