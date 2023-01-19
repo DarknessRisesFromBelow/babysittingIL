@@ -82,140 +82,146 @@ namespace babysittingIL.ServerHandling
 
 
 
-
-				if(sRequest.Contains("CreateUser"))
+				try
 				{
-					try
+					if(sRequest.Contains("CreateUser"))
 					{
-						if(user.MakeNew(sRequest.Replace("CreateUser", "").Replace("'","")) == -1)
+						try
+						{
+							if(user.MakeNew(sRequest.Replace("CreateUser", "").Replace("'","")) == -1)
 							throw new InvalidOperationException("could not create the user!");
-						else
+							else
 							sendData("Created User ", ref sslStream);
-					}
-					catch(Exception e)
-					{
-						sendData("54", ref sslStream);
-					}
-				}
-
-				else if(sRequest.Contains("GetUserData"))
-				{
-					try
-					{
-						user accref = user.GetUserByID(int.Parse(sRequest.Replace("GetUserData", "")));
-						sendData("Got User Info. <br>" + accref.GetData(), ref sslStream);
-					}
-					catch(Exception e)
-					{
-						sendData("57", ref sslStream);
-					}
-				}
-				else if(sRequest.Contains("AddRating"))
-				{
-					try
-					{
-						user accref = user.GetUserByID(int.Parse(sRequest.Replace("AddRating", "").Split(",")[2]));
-						accref.AddScore(int.Parse(sRequest.Replace("AddRating", "").Split(",")[0]),int.Parse(sRequest.Replace("AddRating", "").Split(",")[1]));
-					}
-					catch(Exception ex)
-					{
-
-					}
-				}	
-				else if (sRequest.Contains("MessageUser"))
-				{
-					try
-					{
-						sRequest = sRequest.Replace("MessageUser", "");
-						string[] args = sRequest.Split(",");
-						Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ args[2]);
-						if(sessionManager.validate(client.Client.RemoteEndPoint,args[3],int.Parse(args[0])))
-						{
-							new Message(int.Parse(args[0]), int.Parse(args[1]), args[2]);
-							sendData("sent message.", ref sslStream);
 						}
-						else
+						catch(Exception e)
+						{
+							sendData("54", ref sslStream);
+						}
+					}
+
+					else if(sRequest.Contains("GetUserData"))
+					{
+						try
+						{
+							user accref = user.GetUserByID(int.Parse(sRequest.Replace("GetUserData", "")));
+							sendData("Got User Info. <br>" + accref.GetData(), ref sslStream);
+						}
+						catch(Exception e)
+						{
+							sendData("57", ref sslStream);
+						}
+					}
+					else if(sRequest.Contains("AddRating"))
+					{
+						try
+						{
+							user accref = user.GetUserByID(int.Parse(sRequest.Replace("AddRating", "").Split(",")[2]));
+							accref.AddScore(int.Parse(sRequest.Replace("AddRating", "").Split(",")[0]),int.Parse(sRequest.Replace("AddRating", "").Split(",")[1]));
+						}
+						catch(Exception ex)
+						{
+
+						}
+					}	
+					else if (sRequest.Contains("MessageUser"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("MessageUser", "");
+							string[] args = sRequest.Split(",");
+							Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ args[2]);
+							if(sessionManager.validate(client.Client.RemoteEndPoint,args[3],int.Parse(args[0])))
+							{
+								new Message(int.Parse(args[0]), int.Parse(args[1]), args[2]);
+								sendData("sent message.", ref sslStream);
+							}
+							else
 							throw new Exception("could not verify user, did not allow request to happen.");
 
+						}
+						catch (Exception e)
+						{
+							sendData("could not send message because either sender or reciver ID are not valid!", ref sslStream);
+						}
 					}
-					catch (Exception e)
-					{
-						sendData("could not send message because either sender or reciver ID are not valid!", ref sslStream);
-					}
-				}
 
-				else if (sRequest.Contains("GetAllMessages"))
-				{
-					try
+					else if (sRequest.Contains("GetAllMessages"))
 					{
-						sRequest = sRequest.Replace("GetAllMessages","");
-						string[] requestData = sRequest.Split(",");
-						if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
+						try
+						{
+							sRequest = sRequest.Replace("GetAllMessages","");
+							string[] requestData = sRequest.Split(",");
+							if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
 							sendData("Messages : " + MessagingManager.ReadAll(int.Parse(requestData[0])), ref sslStream);
-						else
+							else
 							throw new Exception("could not verify user, did not allow request to happen.");
-					}
-					catch(Exception ex)
-					{
-						Console.WriteLine(ex);
-						sendData("invalid User!", ref sslStream);
-					}
-				}
-				else if(sRequest.Contains("GetUserHome"))
-				{
-					try
-					{
-						sRequest = sRequest.Replace("GetUserHome", "");
-						string[] requestData = sRequest.Split(",");
-						if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
-							sendData(manager.GetUserHome(int.Parse(requestData[0])), ref sslStream);
-						else
-							throw new Exception("could not verify user, did not allow request to happen.");
-					}
-					catch (Exception ex)
-					{
-						sendData("invalid user!",ref sslStream);
-						Console.WriteLine(ex);
-					}
-				}
-				else if (sRequest.Contains("setGeolocation"))
-				{
-					try 
-					{
-						sRequest = sRequest.Replace("setGeolocation","");
-						string[] requestData = sRequest.Split(",");
-						if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[3],int.Parse(requestData[0])))
-						{
-							user.GetUserByID(int.Parse(requestData[0])).setLocation((double.Parse(requestData[1]),double.Parse(requestData[2])));
-							Console.WriteLine("user " + int.Parse(requestData[0]) + "'s location has been set as " +user.GetUserByID(int.Parse(requestData[0])).getLocation());
-							sendData("set user's location to " + user.GetUserByID(int.Parse(requestData[0])).getLocation(), ref sslStream);
 						}
-						else
-							throw new Exception("could not verify user, did not allow request to happen.");
+						catch(Exception ex)
+						{
+							Console.WriteLine(ex);
+							sendData("invalid User!", ref sslStream);
+						}
 					}
-					catch(Exception ex)
+					else if(sRequest.Contains("GetUserHome"))
 					{
-						sendData("could not set user location.",ref sslStream);
+						try
+						{
+							sRequest = sRequest.Replace("GetUserHome", "");
+							string[] requestData = sRequest.Split(",");
+							if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
+							sendData(manager.GetUserHome(int.Parse(requestData[0])), ref sslStream);
+							else
+							throw new Exception("could not verify user, did not allow request to happen.");
+						}
+						catch (Exception ex)
+						{
+							sendData("invalid user!",ref sslStream);
+							Console.WriteLine(ex);
+						}
+					}
+					else if (sRequest.Contains("setGeolocation"))
+					{
+						try 
+						{
+							sRequest = sRequest.Replace("setGeolocation","");
+							string[] requestData = sRequest.Split(",");
+							if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[3],int.Parse(requestData[0])))
+							{
+								user.GetUserByID(int.Parse(requestData[0])).setLocation((double.Parse(requestData[1]),double.Parse(requestData[2])));
+								Console.WriteLine("user " + int.Parse(requestData[0]) + "'s location has been set as " +user.GetUserByID(int.Parse(requestData[0])).getLocation());
+								sendData("set user's location to " + user.GetUserByID(int.Parse(requestData[0])).getLocation(), ref sslStream);
+							}
+							else
+							throw new Exception("could not verify user, did not allow request to happen.");
+						}
+						catch(Exception ex)
+						{
+							sendData("could not set user location.",ref sslStream);
+						}
+					}
+					else if(sRequest.Contains("login"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("login", "");
+							string[] requestData = sRequest.Split(",");
+							Console.WriteLine("attempting to sign in user " + requestData[0]+" with password " + requestData[1]);
+							int id = user.GetIdByName(requestData[0]);
+							Console.WriteLine("id : " + id);
+							user myUser = user.GetUserByID(id);
+							Console.WriteLine(myUser.GetUsername()+"'s password is " + myUser.GetPassword());
+							myUser.login(requestData[1], client.Client.RemoteEndPoint);
+							sendData("logged in, needed info is " + myUser.getSessionID() + "," + myUser.GetID(), ref sslStream);
+						}
+						catch(Exception ex)
+						{
+							sendData("log in" + ex, ref sslStream);
+						}
 					}
 				}
-				else if(sRequest.Contains("login"))
+				catch(Exception e)
 				{
-					try
-					{
-						sRequest = sRequest.Replace("login", "");
-						string[] requestData = sRequest.Split(",");
-						Console.WriteLine("attempting to sign in user " + requestData[0]+" with password " + requestData[1]);
-						int id = user.GetIdByName(requestData[0]);
-						Console.WriteLine("id : " + id);
-						user myUser = user.GetUserByID(id);
-						Console.WriteLine(myUser.GetUsername()+"'s password is " + myUser.GetPassword());
-						myUser.login(requestData[1], client.Client.RemoteEndPoint);
-						sendData("logged in, needed info is " + myUser.getSessionID() + "," + myUser.GetID(), ref sslStream);
-					}
-					catch(Exception ex)
-					{
-						sendData("log in" + ex, ref sslStream);
-					}
+					Console.WriteLine("error encountered.\nerror:\t{0}\ncontinuing...", e.InnerException.Message);
 				}
 			}
 			catch (AuthenticationException e)
@@ -236,6 +242,7 @@ namespace babysittingIL.ServerHandling
 				client.Close();
 			}
 		}
+
 	}
 }
 
