@@ -2,7 +2,8 @@ namespace babysittingIL.ServerHandling
 {
 	using System;  
 	using System.IO;  
-	using System.Net;  
+	using System.Net;
+	using System.Web;
 	using System.Net.Sockets;
 	using System.Net.Security;
 	using System.Security.Authentication;
@@ -78,7 +79,7 @@ namespace babysittingIL.ServerHandling
 				string sRequest = sBuffer.Substring(0, iStartPos - 1);  
 				//Replace backslash with Forward Slash, if Any  
 				sRequest = sRequest.Replace("\\", "/").Replace("%22","'").Replace("%20", " ").Replace("GET /", "").Replace("&",",");
-				
+				sRequest = HttpUtility.UrlDecode(sRequest);
 
 
 
@@ -129,10 +130,22 @@ namespace babysittingIL.ServerHandling
 						{
 							sRequest = sRequest.Replace("MessageUser", "");
 							string[] args = sRequest.Split(",");
-							Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ args[2]);
-							if(sessionManager.validate(client.Client.RemoteEndPoint,args[3],int.Parse(args[0])))
+							string message = "";
+							for(int o = 2; o < args.Length - 1;o++)
 							{
-								new Message(int.Parse(args[0]), int.Parse(args[1]), args[2]);
+								if(o + 1 != args.Length - 1)
+								{
+									message += args[o] + ",";
+								}
+								else
+								{
+									message += args[o];
+								}
+							}
+							Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ message);
+							if(sessionManager.validate(client.Client.RemoteEndPoint,args[args.Length - 1],int.Parse(args[0])))
+							{
+								new Message(int.Parse(args[0]), int.Parse(args[1]),message);
 								sendData("sent message.", ref sslStream);
 							}
 							else
