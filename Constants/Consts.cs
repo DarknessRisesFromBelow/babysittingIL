@@ -7,5 +7,6 @@ namespace babysittingIL.Constants
 		public const string ParentWelcomeMessage = "welcome to BabysittingIL, we hope we make your babysitter finding process as easy and fast as possible and we hope to be able to give you the most responsible babysitters we can so that you will be able to enjoy your time away from your kid without worries.";
 		public const string defaultPfpURL = "https://www.law.berkeley.edu/wp-content/uploads/2015/04/Blank-profile.png";
 		public const string PfxPassword = "1234";
+		public const int Dist = 2500;
 	}
 }
