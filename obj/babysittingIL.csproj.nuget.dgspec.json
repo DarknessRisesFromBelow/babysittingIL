@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\babysittingIL.csproj": {}
+    "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\babysittingIL.csproj": {
+    "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\babysittingIL.csproj",
+        "projectUniqueName": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
         "projectName": "babysittingIL",
-        "projectPath": "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\babysittingIL.csproj",
-        "packagesPath": "C:\\Users\\medin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\obj\\",
+        "projectPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+        "packagesPath": "C:\\Users\\Magshimim\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\medin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Magshimim\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -48,12 +48,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.11, 6.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

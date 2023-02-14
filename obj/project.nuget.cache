@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "I3wG/zzp18DkdPlSON6NSS6PNOD0Nqn6irpxeiOhlrQr0SJ7y9SPLNEqTwYbiHmbGHYhD73ZsXbMjtwigpVvHg==",
+  "dgSpecHash": "+JkESyZieHGHSNmPQzIZjxmDBSaEGHgbbzSgirVWYfniKaLA6z+K80Bpz9bGNzcv2yDSpSuuvfSuoYpBzQILfA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\medin\\Desktop\\projects\\hobby\\babysittingIL\\babysittingIL.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.11\\microsoft.netcore.app.host.win-x64.6.0.11.nupkg.sha512"
+  ],
   "logs": []
 }

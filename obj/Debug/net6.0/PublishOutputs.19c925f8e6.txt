@@ -1,0 +1,5 @@
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net6.0\publish\babysittingIL.exe
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net6.0\publish\babysittingIL.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net6.0\publish\babysittingIL.deps.json
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net6.0\publish\babysittingIL.runtimeconfig.json
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net6.0\publish\babysittingIL.pdb
