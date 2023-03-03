@@ -90,9 +90,9 @@ namespace babysittingIL.ServerHandling
 						try
 						{
 							if(user.MakeNew(sRequest.Replace("CreateUser", "").Replace("'","")) == -1)
-							throw new InvalidOperationException("could not create the user!");
+								throw new InvalidOperationException("could not create the user!");
 							else
-							sendData("Created User ", ref sslStream);
+								sendData("Created User ", ref sslStream);
 						}
 						catch(Exception e)
 						{
@@ -118,12 +118,58 @@ namespace babysittingIL.ServerHandling
 						{
 							user accref = user.GetUserByID(int.Parse(sRequest.Replace("AddRating", "").Split(",")[2]));
 							accref.AddScore(int.Parse(sRequest.Replace("AddRating", "").Split(",")[0]),int.Parse(sRequest.Replace("AddRating", "").Split(",")[1]));
+							sendData("added rating!", ref sslStream);	
 						}
 						catch(Exception ex)
 						{
 
 						}
+					}
+					else if (sRequest.Contains("setPfp"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("setPfp", "");
+							string[] args = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(args[0]));
+							accref.SetPFP(args[0]);
+							sendData("set new pfp", ref sslStream);
+						}
+						catch(Exception ex){}
+					}
+					else if (sRequest.Contains("setRate"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("setPfp", "");
+							string[] args = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(args[0]));
+							accref.SetRate(args[0]);
+						}
+						catch(Exception ex){}
 					}	
+					else if (sRequest.Contains("setBio"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("setBio", "");
+							string[] args = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(args[0]));
+							accref.SetBio(args[0]);
+						}
+						catch(Exception ex){}
+					}
+					else if (sRequest.Contains("setRate"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("setRate", "");
+							string[] args = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(args[0]));
+							accref.SetRate(int(args[0]));
+						}
+						catch(Exception ex){}
+					}
 					else if (sRequest.Contains("MessageUser"))
 					{
 						try

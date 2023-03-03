@@ -21,10 +21,13 @@ namespace babysittingIL.UserManagement
 		public int score = 0;
 		public int reviews = 0;
 		public float rating = 0.0f;
+		float rate = 25.7f;
 		locationObject location;
 		public static List<user> users = new();
 		bool LoggedIn = false;
 		string sessionID = "";
+		string bio = "";
+
 		public user(int Type, string name, string email, string password, string pfpURL = Consts.defaultPfpURL)
 		{	
 			profilePicURL = pfpURL;
@@ -66,6 +69,10 @@ namespace babysittingIL.UserManagement
 		public float GetRating() => rating;
 		public string GetPFP() => profilePicURL;
 		public void SetPFP(string newURL) => profilePicURL = newURL;
+		public float GetRate() => rate;
+		public void SetRate(float newRate)	=> rate = newRate;
+		public string getBio() => bio;
+		public void SetBio(string newBio) => bio = newBio;
 		public (double,double) getLocation() => locationManager.locations[GetID()].getLocation();
 		public void setLocation((double,double) nLocation) => locationManager.locations[GetID()].setLocation(nLocation);
 		public static int MakeNew(string options)
