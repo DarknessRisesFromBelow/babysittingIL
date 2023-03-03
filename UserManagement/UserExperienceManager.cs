@@ -1,5 +1,6 @@
 using babysittingIL.UserManagement;
 using babysittingIL.UserManagement.location;
+using babysittingIL.Constants;
 
 namespace babysittingIL.UserExperience
 {
@@ -13,7 +14,7 @@ namespace babysittingIL.UserExperience
 			{
 				user secondUser = user.GetUserByID(i);
 				float dist = locationObject.getDistance(myUser.getLocation(),secondUser.getLocation());
-				int radius = 2500;
+				int radius = Consts.Dist;
 				Console.WriteLine("the distance is "+ dist + "and the range is "+ radius + ", which means the value of dist<radius will be "+ (dist<radius));
 				if(i != id && dist<radius)
 				{
