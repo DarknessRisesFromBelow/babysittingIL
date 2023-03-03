@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+JkESyZieHGHSNmPQzIZjxmDBSaEGHgbbzSgirVWYfniKaLA6z+K80Bpz9bGNzcv2yDSpSuuvfSuoYpBzQILfA==",
+  "dgSpecHash": "7ghPlNDF1x35JgrujOlv2ISOhavqhrhxYg3uoYkIPB2a80veih0tW86zrmVLeUtkgKdrJyi7IHnAUEMKh6j+Gw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.11\\microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
-    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.11\\microsoft.windowsdesktop.app.ref.6.0.11.nupkg.sha512",
-    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.11\\microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
-    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.11\\microsoft.netcore.app.host.win-x64.6.0.11.nupkg.sha512"
-  ],
+  "projectFilePath": "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

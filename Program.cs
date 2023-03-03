@@ -8,7 +8,7 @@ namespace babysittingIL
 		public static void Main(string[] args)
 		{
 			string certificate = "./certs/test/5/certificate.pfx";
-			SecureHandler.StartServer(443,certificate,Consts.PfxPassword);		
+			//SecureHandler.StartServer(443,certificate,Consts.PfxPassword);		
 			//SecureHandler.StartServer(443,certificate,Consts.PfxPassword);	
 			new Handler(8080).StartServer();		
 		}
