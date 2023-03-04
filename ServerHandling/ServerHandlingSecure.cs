@@ -141,10 +141,11 @@ namespace babysittingIL.ServerHandling
 					{
 						try
 						{
-							sRequest = sRequest.Replace("setPfp", "");
+							sRequest = sRequest.Replace("setRate", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
 							accref.SetRate(float.Parse(args[1]));
+							sendData("Successfully set new rate", ref sslStream);
 						}
 						catch(Exception ex){}
 					}	
@@ -156,19 +157,15 @@ namespace babysittingIL.ServerHandling
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
 							accref.SetBio(args[1]);
+							sendData("Successfully set new bio", ref sslStream);
 						}
 						catch(Exception ex){}
 					}
-					else if (sRequest.Contains("setRate"))
+					else if (sRequest.Contains("getComments"))
 					{
-						try
-						{
-							sRequest = sRequest.Replace("setRate", "");
-							string[] args = sRequest.Split(",");
-							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetRate(int.Parse(args[1]));
-						}
-						catch(Exception ex){}
+						sRequest = sRequest.Replace("getComments", "");
+						user accref = user.GetUserByID(int.Parse(sRequest));
+						sendData(accref.GetReviews(), ref sslStream);
 					}
 					else if (sRequest.Contains("MessageUser"))
 					{
@@ -280,7 +277,14 @@ namespace babysittingIL.ServerHandling
 				}
 				catch(Exception e)
 				{
-					Console.WriteLine("error encountered.\nerror:\t{0}\ncontinuing...", e.InnerException.Message);
+					try
+					{
+						Console.WriteLine("error encountered.\nerror:\t{0}\ncontinuing...", e.InnerException.Message);
+					}
+					catch(Exception ex)
+					{
+						Console.WriteLine("error printing the error message, oops ig...");
+					}
 				}
 			}
 			catch (AuthenticationException e)

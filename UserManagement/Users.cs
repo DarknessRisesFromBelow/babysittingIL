@@ -3,6 +3,7 @@ using babysittingIL.Constants;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
+using babysittingIL.reviewManagement;
 using System.Net;
 
 namespace babysittingIL.UserManagement
@@ -27,6 +28,8 @@ namespace babysittingIL.UserManagement
 		bool LoggedIn = false;
 		string sessionID = "";
 		string bio = "";
+
+
 
 		public user(int Type, string name, string email, string password, string pfpURL = Consts.defaultPfpURL)
 		{	
@@ -71,8 +74,9 @@ namespace babysittingIL.UserManagement
 		public void SetPFP(string newURL) => profilePicURL = newURL;
 		public float GetRate() => rate;
 		public void SetRate(float newRate)	=> rate = newRate;
-		public string getBio() => bio;
+		public string GetBio() => bio;
 		public void SetBio(string newBio) => bio = newBio;
+		public string GetReviews() => reviewManager.getReviews(GetID()); 
 		public (double,double) getLocation() => locationManager.locations[GetID()].getLocation();
 		public void setLocation((double,double) nLocation) => locationManager.locations[GetID()].setLocation(nLocation);
 		public static int MakeNew(string options)
@@ -136,6 +140,6 @@ namespace babysittingIL.UserManagement
 			}
 			return NotAUser;
 		}
-		public string GetData() => "" + GetUsername() + "," + GetRating() + "," + GetPFP() + "," + GetID();
+		public string GetData() => "" + GetUsername() + "," + GetRating() + "," + GetPFP() +","+ GetBio() + "," + GetRate() + "," + GetID();
 	}
 }
