@@ -144,7 +144,7 @@ namespace babysittingIL.ServerHandling
 							sRequest = sRequest.Replace("setPfp", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetRate(args[0]);
+							accref.SetRate(float.Parse(args[1]));
 						}
 						catch(Exception ex){}
 					}	
@@ -155,7 +155,7 @@ namespace babysittingIL.ServerHandling
 							sRequest = sRequest.Replace("setBio", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetBio(args[0]);
+							accref.SetBio(args[1]);
 						}
 						catch(Exception ex){}
 					}
@@ -166,7 +166,7 @@ namespace babysittingIL.ServerHandling
 							sRequest = sRequest.Replace("setRate", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetRate(int(args[0]));
+							accref.SetRate(int.Parse(args[1]));
 						}
 						catch(Exception ex){}
 					}
