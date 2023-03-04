@@ -6,4 +6,4 @@ if you are here and you are not [ redacted for privacy ] and I assume that the f
   ### how it started vs how it is rn
   ### the mission
   ### current status, and how we continue from here
-  ### insanity log [ staring from a few months after I started working on this project ]
+  ### insanity log [ starting from a few months after I started working on this project ]
