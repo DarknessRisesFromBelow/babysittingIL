@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {}
+    "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {
+    "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+        "projectUniqueName": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
         "projectName": "babysittingIL",
-        "projectPath": "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+        "projectPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
         "packagesPath": "C:\\Users\\Magshimim\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\obj\\",
+        "outputPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Magshimim\\AppData\\Roaming\\NuGet\\NuGet.Config"

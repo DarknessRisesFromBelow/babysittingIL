@@ -39,6 +39,7 @@ namespace babysittingIL.UserManagement
 			location = new((1,0));
 			MessagingManager.Lists.Add(new());
 			users.Add(this);
+			reviewManager.AddUser(GetID());
 			if(userType == UserType.Babysitter)
 			{
 				SendMail("welcome to BabysittingIL!", Consts.BabysitterWelcomeMessage);
@@ -49,6 +50,7 @@ namespace babysittingIL.UserManagement
 			}
 		}
 
+		////////////////////////////// obselete //////////////////////////////
 		public void AddScore(int scoreToAdd, int fromID)
 		{
 			score += scoreToAdd;
@@ -62,6 +64,8 @@ namespace babysittingIL.UserManagement
 			reviews++;
 			rating = score/reviews;
 		}
+		///////////////////////////////////////////////////////////////////////
+
 		public string GetEmail() => acc.GetEmailAddress();
 		public string GetUsername() => acc.GetUsername();
 		public string GetPassword() => acc.GetPassword();
@@ -101,6 +105,11 @@ namespace babysittingIL.UserManagement
 				throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");
 				return -1;
 			}
+		}
+
+		public void AddReview(int fromID, string comment, int rating)
+		{
+			reviewManager.AddReview(GetID(), fromID, rating, comment);
 		}
 
 		public bool login(string password, EndPoint connectedDevice)

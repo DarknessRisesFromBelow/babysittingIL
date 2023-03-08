@@ -112,6 +112,7 @@ namespace babysittingIL.ServerHandling
 							sendData("57", ref sslStream);
 						}
 					}
+	/////////////////////////////	obselete, use AddReview instead.	///////////////////////////// 					
 					else if(sRequest.Contains("AddRating"))
 					{
 						try
@@ -125,6 +126,7 @@ namespace babysittingIL.ServerHandling
 
 						}
 					}
+	//////////////////////////////////////////////////////////////////////////////////////////////////
 					else if (sRequest.Contains("setPfp"))
 					{
 						try
@@ -163,9 +165,17 @@ namespace babysittingIL.ServerHandling
 					}
 					else if (sRequest.Contains("getComments"))
 					{
-						sRequest = sRequest.Replace("getComments", "");
-						user accref = user.GetUserByID(int.Parse(sRequest));
-						sendData(accref.GetReviews(), ref sslStream);
+						try
+						{
+							sRequest = sRequest.Replace("getComments", "");
+							user accref = user.GetUserByID(int.Parse(sRequest));
+							sendData("---REVIEWS-START---\n" + accref.GetReviews() + "---REVIEWS-END---", ref sslStream);
+						}
+						catch(Exception ex)
+						{
+							Console.WriteLine(ex);
+							sendData("REVIEWGETTINGERROR 51", ref sslStream);
+						}
 					}
 					else if (sRequest.Contains("MessageUser"))
 					{
@@ -233,6 +243,33 @@ namespace babysittingIL.ServerHandling
 						{
 							sendData("invalid user!",ref sslStream);
 							Console.WriteLine(ex);
+						}
+					}
+					else if (sRequest.Contains("AddReview"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("AddReview", "");
+							string[] info = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(info[0]));
+							string text = info[2];
+							if(info.Length > 4)
+							{
+								text = "";
+								for(int o = 2; o < info.Length - 1; o++)
+								{
+									text += info[o];
+									text += (o != info.Length - 2) ? "," : "";
+								}
+							}
+							accref.AddReview(int.Parse(info[1]), text, int.Parse(info[info.Length - 1]));
+							sendData("Succesfully added review",ref sslStream);
+						}
+						catch(Exception ex)
+						{
+							Console.WriteLine(ex);
+							sendData("could not add review",ref sslStream);
+
 						}
 					}
 					else if (sRequest.Contains("setGeolocation"))

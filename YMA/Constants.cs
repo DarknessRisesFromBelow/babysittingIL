@@ -17,7 +17,7 @@ namespace YMA.General
 			public const string MyMail = "yairmedina356@gmail.com";
 			public const string MailSubjectPreset = "";
 			public const string smtpServer = "smtp.gmail.com";
-			public const string smtpAppID = "tzgtvcrrnmeiluul";
+			public const string smtpAppID = "iumpguqpsocvjfbc";
 		
 	}
 }

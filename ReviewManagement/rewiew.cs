@@ -1,9 +1,12 @@
+using babysittingIL.UserManagement;
+
 namespace babysittingIL.reviewManagement
 {
 	public struct review
 	{
 		int stars;
 		string Review;
+		string fromUsername;
 		int fromID;
 		int toID;
 
@@ -13,11 +16,13 @@ namespace babysittingIL.reviewManagement
 			Review = reviewString;
 			toID = commentedUserID;
 			fromID = fromUserID;
+			user accref = user.GetUserByID(fromID);
+			fromUsername = accref.GetUsername();
 		}
 
 		public string getReview()
 		{
-			return "" + fromID + "," + toID + "," + stars + "," + Review;
+			return "" + fromID + "," + fromUsername +"," + toID + "," + stars + "," + Review;
 		}
 	}
 }
