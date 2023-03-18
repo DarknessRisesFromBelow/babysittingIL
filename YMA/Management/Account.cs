@@ -19,8 +19,8 @@ namespace YMA.Management
 			{
 				if(GeneralManagement.activeAccounts[i].GetUsername() == Username || GeneralManagement.activeAccounts[i].GetEmailAddress() == Email)
 				{
-					throw new InvalidOperationException("can not create account with these details, either username or account already exists in YMA");
 					GeneralManagement.activeAccounts.RemoveAt(i);
+					throw new InvalidOperationException("can not create account with these details, either username or account already exists in YMA");
 				}
 				break;
 			}

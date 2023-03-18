@@ -102,7 +102,7 @@ namespace babysittingIL.UserManagement
 			{
 				users.RemoveAt(users.Count);
 				Console.WriteLine(ex);
-				throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");
+				throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");				
 				return -1;
 			}
 		}
@@ -123,8 +123,8 @@ namespace babysittingIL.UserManagement
 			else
 			{
 				throw new Exception("could not log user in. either username or password are incorrect");
-				return false;
 			}
+			return false;
 		}
 
 		public static int GetIdByName(string name)

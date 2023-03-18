@@ -25,6 +25,7 @@ namespace babysittingIL.ServerHandling
 				{
 					Port = port;
 					myListener = new TcpListener(Port);  
+					manager = new HomeManager();
 				}
 		
 		// server starting
@@ -33,7 +34,6 @@ namespace babysittingIL.ServerHandling
 				{
 					try
 					{
-						manager = new HomeManager();
 						//user.MakeNew("1,yair,medinayair1602@gmail.com,helloWorld!");
 						myListener.Start();  
 						Console.WriteLine("Web Server Running... Press ^C to Stop...");  
@@ -171,6 +171,7 @@ namespace babysittingIL.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error occured, error details : " + e);
 									error(54, mySocket, sHttpVersion);
 								}
 							}
@@ -184,6 +185,7 @@ namespace babysittingIL.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error occured, error details : " + e);
 									error(57, mySocket, sHttpVersion);
 								}
 							}
@@ -206,6 +208,7 @@ namespace babysittingIL.ServerHandling
 								}
 								catch (Exception e)
 								{
+									Console.WriteLine("error occured, error details : " + e);
 									error("could not send message because either sender or reciver ID are not valid!", mySocket, sHttpVersion);
 								}
 							}
@@ -261,6 +264,7 @@ namespace babysittingIL.ServerHandling
 								}
 								catch(Exception ex)
 								{
+									Console.WriteLine("error occured, error details : " + ex);
 									error("could not set user location.",mySocket,sHttpVersion);
 								}
 							}
@@ -280,6 +284,7 @@ namespace babysittingIL.ServerHandling
 								}
 								catch(Exception ex)
 								{
+									Console.WriteLine("error occured, error details : " + ex);
 									error("log in" + ex, mySocket,sHttpVersion);
 								}
 							}
@@ -288,7 +293,7 @@ namespace babysittingIL.ServerHandling
 					}
 					catch(Exception ex)
 					{
-						Console.WriteLine("Error Occurred, continuing.");
+						Console.WriteLine("error occured, error details : " + ex + "continuing...");
 					}
 				} 
 			}  

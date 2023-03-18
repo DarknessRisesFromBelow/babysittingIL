@@ -156,6 +156,7 @@ namespace YMA.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error "+ e + " Occurred while creating user");
 									error(54, mySocket, sHttpVersion);
 								}
 							}
@@ -170,6 +171,7 @@ namespace YMA.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error "+ e + " Occurred while removing user");									
 									error(55, mySocket, sHttpVersion);
 								}
 							}
@@ -184,6 +186,7 @@ namespace YMA.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error "+ e + " Occurred while mailing user");
 									error(56, mySocket, sHttpVersion);
 								}
 							}
@@ -198,6 +201,7 @@ namespace YMA.ServerHandling
 								}
 								catch(Exception e)
 								{
+									Console.WriteLine("error "+ e + " Occurred while getting user data");
 									error(57, mySocket, sHttpVersion);
 								}
 							}

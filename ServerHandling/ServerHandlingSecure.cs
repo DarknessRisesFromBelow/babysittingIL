@@ -23,11 +23,17 @@ namespace babysittingIL.ServerHandling
 		public static HomeManager manager;
 		// The certificate parameter specifies the name of the file
 		// containing the machine certificate.
+
+		//public SecureHandler()
+		//{
+		//	manager = new HomeManager();
+		//}
+
 		public static void StartServer(int port, string certificate,string password)
 		{
+			manager = new HomeManager();
 			serverCertificate = new X509Certificate(certificate, password);
 			TcpListener listener = new TcpListener(IPAddress.Any, port);
-			manager = new HomeManager();
 			listener.Start();
 			while (true)
 			{
@@ -96,6 +102,7 @@ namespace babysittingIL.ServerHandling
 						}
 						catch(Exception e)
 						{
+							Console.WriteLine("error occured, error details : " + e);
 							sendData("54", ref sslStream);
 						}
 					}
@@ -109,6 +116,7 @@ namespace babysittingIL.ServerHandling
 						}
 						catch(Exception e)
 						{
+							Console.WriteLine("error occured, error details : " + e);
 							sendData("57", ref sslStream);
 						}
 					}
@@ -123,7 +131,8 @@ namespace babysittingIL.ServerHandling
 						}
 						catch(Exception ex)
 						{
-
+							Console.WriteLine("error occured, error details : " + ex);
+							sendData("could not add rating!", ref sslStream);	
 						}
 					}
 	//////////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,9 +144,13 @@ namespace babysittingIL.ServerHandling
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
 							accref.SetPFP(args[0]);
-							sendData("set new pfp", ref sslStream);
+							sendData("Successfully set new pfp", ref sslStream);
 						}
-						catch(Exception ex){}
+						catch(Exception ex)
+						{
+							Console.WriteLine("error occured, error details : " + ex);
+							sendData("could not set new pfp", ref sslStream);
+						}
 					}
 					else if (sRequest.Contains("setRate"))
 					{
@@ -149,7 +162,11 @@ namespace babysittingIL.ServerHandling
 							accref.SetRate(float.Parse(args[1]));
 							sendData("Successfully set new rate", ref sslStream);
 						}
-						catch(Exception ex){}
+						catch(Exception ex)
+						{
+							Console.WriteLine("error occured, error details : " + ex);
+							sendData("could not set new rate", ref sslStream);
+						}
 					}	
 					else if (sRequest.Contains("setBio"))
 					{
@@ -161,7 +178,11 @@ namespace babysittingIL.ServerHandling
 							accref.SetBio(args[1]);
 							sendData("Successfully set new bio", ref sslStream);
 						}
-						catch(Exception ex){}
+						catch(Exception ex)
+						{
+							Console.WriteLine("error occured, error details : " + ex);
+							sendData("Could not set new bio", ref sslStream);
+						}
 					}
 					else if (sRequest.Contains("getComments"))
 					{
@@ -202,11 +223,12 @@ namespace babysittingIL.ServerHandling
 								sendData("sent message.", ref sslStream);
 							}
 							else
-							throw new Exception("could not verify user, did not allow request to happen.");
+								throw new Exception("could not verify user, did not allow request to happen.");
 
 						}
 						catch (Exception e)
 						{
+							Console.WriteLine("error occured, error details : " + e);
 							sendData("could not send message because either sender or reciver ID are not valid!", ref sslStream);
 						}
 					}
@@ -220,7 +242,7 @@ namespace babysittingIL.ServerHandling
 							if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
 							sendData("Messages : " + MessagingManager.ReadAll(int.Parse(requestData[0])), ref sslStream);
 							else
-							throw new Exception("could not verify user, did not allow request to happen.");
+								throw new Exception("could not verify user, did not allow request to happen.");
 						}
 						catch(Exception ex)
 						{
@@ -237,7 +259,7 @@ namespace babysittingIL.ServerHandling
 							if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
 							sendData(manager.GetUserHome(int.Parse(requestData[0])), ref sslStream);
 							else
-							throw new Exception("could not verify user, did not allow request to happen.");
+								throw new Exception("could not verify user, did not allow request to happen.");
 						}
 						catch (Exception ex)
 						{
@@ -252,6 +274,7 @@ namespace babysittingIL.ServerHandling
 							sRequest = sRequest.Replace("AddReview", "");
 							string[] info = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(info[0]));
+							accref.AddScore(int.Parse(info[info.Length - 1]), int.Parse(info[1]));
 							string text = info[2];
 							if(info.Length > 4)
 							{
@@ -285,10 +308,11 @@ namespace babysittingIL.ServerHandling
 								sendData("set user's location to " + user.GetUserByID(int.Parse(requestData[0])).getLocation(), ref sslStream);
 							}
 							else
-							throw new Exception("could not verify user, did not allow request to happen.");
+								throw new Exception("could not verify user, did not allow request to happen.");
 						}
 						catch(Exception ex)
 						{
+							Console.WriteLine("error occured, error details : " + ex);
 							sendData("could not set user location.",ref sslStream);
 						}
 					}
@@ -308,6 +332,7 @@ namespace babysittingIL.ServerHandling
 						}
 						catch(Exception ex)
 						{
+							Console.WriteLine("error occured, error details : " + ex);
 							sendData("log in" + ex, ref sslStream);
 						}
 					}
@@ -320,7 +345,7 @@ namespace babysittingIL.ServerHandling
 					}
 					catch(Exception ex)
 					{
-						Console.WriteLine("error printing the error message, oops ig...");
+						Console.WriteLine("error printing the error message, oops ig... detail of the error: "+ ex);
 					}
 				}
 			}
