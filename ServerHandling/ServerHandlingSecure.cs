@@ -143,7 +143,7 @@ namespace babysittingIL.ServerHandling
 							sRequest = sRequest.Replace("setPfp", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetPFP(args[0]);
+							accref.SetPFP(args[1]);
 							sendData("Successfully set new pfp", ref sslStream);
 						}
 						catch(Exception ex)
