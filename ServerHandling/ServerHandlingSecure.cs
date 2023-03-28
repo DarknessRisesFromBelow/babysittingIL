@@ -172,10 +172,20 @@ namespace babysittingIL.ServerHandling
 					{
 						try
 						{
+							string newBio = "";
 							sRequest = sRequest.Replace("setBio", "");
 							string[] args = sRequest.Split(",");
 							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetBio(args[1]);
+
+							newBio += args[1];
+							for(int q = 2; q < args.Length; q++)
+							{
+								if(args.Length != 2)
+								{
+									newBio += "," + args[q];
+								}
+							}
+							accref.SetBio(newBio);
 							sendData("Successfully set new bio", ref sslStream);
 						}
 						catch(Exception ex)
