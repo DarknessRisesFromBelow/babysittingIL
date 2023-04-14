@@ -29,6 +29,14 @@ namespace babysittingIL.ServerHandling
 		//	manager = new HomeManager();
 		//}
 
+
+		/// <summary>
+		/// Starts a server.
+		/// </summary>
+		///
+		/// <param name="port">The port</param>
+		/// <param name="certificate">The certificate</param>
+		/// <param name="password">The password</param>
 		public static void StartServer(int port, string certificate,string password)
 		{
 			manager = new HomeManager();
@@ -43,6 +51,12 @@ namespace babysittingIL.ServerHandling
 			}
 		}
 
+		/// <summary>
+		/// Sends data back to the client.
+		/// </summary>
+		///
+		/// <param name="data">The data</param>
+		/// <param name="stream">The stream</param>
 		static void sendData(string data, ref SslStream stream)
 		{
 			String sBuffer = "";  
@@ -59,6 +73,11 @@ namespace babysittingIL.ServerHandling
 			stream.Write(secondData);
 		}
 
+		/// <summary>
+		/// function processes the HTTP/S request.
+		/// </summary>
+		///
+		/// <param name="client">The client</param>
 		static void ProcessClient (TcpClient client)
 		{
 			SslStream sslStream = new SslStream(client.GetStream(), false);
@@ -338,7 +357,7 @@ namespace babysittingIL.ServerHandling
 							user myUser = user.GetUserByID(id);
 							Console.WriteLine(myUser.GetUsername()+"'s password is " + myUser.GetPassword());
 							myUser.login(requestData[1], client.Client.RemoteEndPoint);
-							sendData("logged in, needed info is " + myUser.getSessionID() + "," + myUser.GetID(), ref sslStream);
+							sendData("logged in, needed info is " + myUser.getSessionID() + "," + myUser.GetID() + "," + myUser.GetType(), ref sslStream);
 						}
 						catch(Exception ex)
 						{

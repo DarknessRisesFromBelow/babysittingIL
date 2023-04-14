@@ -39,6 +39,7 @@ namespace babysittingIL.UserManagement
 			location = new((1,0));
 			MessagingManager.Lists.Add(new());
 			users.Add(this);
+			Console.WriteLine("added user to user list.");
 			reviewManager.AddUser(GetID());
 			if(userType == UserType.Babysitter)
 			{
@@ -89,7 +90,7 @@ namespace babysittingIL.UserManagement
 			{
 				string[] retrived = options.Split(',');
 				Console.WriteLine("Retrived Info : " + retrived[0]+","+ retrived[1]+","+ retrived[2]+","+ retrived[3]);
-				if(retrived.Length > 4)
+				if(retrived.Length == 5)
 				{
 					return new user(int.Parse(retrived[0]),retrived[1], retrived[2], retrived[3], retrived[4]).GetID();
 				}
@@ -100,9 +101,8 @@ namespace babysittingIL.UserManagement
 			}
 			catch(Exception ex)
 			{
-				users.RemoveAt(users.Count);
 				Console.WriteLine(ex);
-				throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");				
+				//throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");				
 				return -1;
 			}
 		}
@@ -110,6 +110,18 @@ namespace babysittingIL.UserManagement
 		public void AddReview(int fromID, string comment, int rating)
 		{
 			reviewManager.AddReview(GetID(), fromID, rating, comment);
+		}
+
+		public int GetType()
+		{
+			int type = 0;
+
+			if(userType == UserType.Babysitter)
+			{
+				type = 1;
+			}
+			
+			return type;
 		}
 
 		public bool login(string password, EndPoint connectedDevice)

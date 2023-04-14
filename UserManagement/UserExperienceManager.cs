@@ -16,7 +16,7 @@ namespace babysittingIL.UserExperience
 				float dist = locationObject.getDistance(myUser.getLocation(),secondUser.getLocation());
 				int radius = Consts.Dist;
 				Console.WriteLine("the distance is "+ dist + "and the range is "+ radius + ", which means the value of dist<radius will be "+ (dist<radius));
-				if(i != id && dist<radius)
+				if(i != id && dist<radius && secondUser.GetType() == 1)
 				{
 					if(i == user.users.Count)
 						users += user.users[i].GetData();

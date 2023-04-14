@@ -19,10 +19,11 @@ namespace YMA.Management
 			{
 				if(GeneralManagement.activeAccounts[i].GetUsername() == Username || GeneralManagement.activeAccounts[i].GetEmailAddress() == Email)
 				{
-					GeneralManagement.activeAccounts.RemoveAt(i);
+					//GeneralManagement.activeAccounts.RemoveAt(i);
+					// ^ stupid, do not do this.
+					Console.WriteLine("there exists a different user with this username/email");
 					throw new InvalidOperationException("can not create account with these details, either username or account already exists in YMA");
 				}
-				break;
 			}
 			username = Username;
 			password = Password;
@@ -62,7 +63,7 @@ namespace YMA.Management
 			};
 			MailMessage message = new MailMessage
 			{
-				From = new MailAddress(Constants.MyMail),
+				From = new MailAddress(Constants.MyMail, "YMA"),
 				Subject = Constants.MailSubjectPreset + subject,
 				Body = HTML,
 				IsBodyHtml = true,
