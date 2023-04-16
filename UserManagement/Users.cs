@@ -5,6 +5,7 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 using babysittingIL.reviewManagement;
 using System.Net;
+using System;
 
 namespace babysittingIL.UserManagement
 {
@@ -105,6 +106,20 @@ namespace babysittingIL.UserManagement
 				//throw new Exception("Couldnot create user. presumably due to duplicate email or a username that already exists in the system");				
 				return -1;
 			}
+		}
+
+		public void clearComments()
+		{
+			reviewManager.clearComments();
+		}
+
+		public void transferMoney(int targetID, int hours)
+		{
+			Console.WriteLine("Executed!");
+			user targetUser = user.GetUserByID(targetID);
+			float targetRate = targetUser.GetRate();
+			Console.WriteLine("transferred " + (targetRate * hours) + " nils between " + GetUsername() + " and " + targetUser.GetUsername());
+			throw new NotImplementedException();
 		}
 
 		public void AddReview(int fromID, string comment, int rating)

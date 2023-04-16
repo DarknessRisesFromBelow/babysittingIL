@@ -126,6 +126,34 @@ namespace babysittingIL.ServerHandling
 						}
 					}
 
+					else if(sRequest.Contains("PayUser"))
+					{
+						try
+						{	
+							string[] args = sRequest.Replace("PayUser", "").Split(",");
+							if(sessionManager.validate(client.Client.RemoteEndPoint,args[args.Length - 1],int.Parse(args[0])))
+							{
+								user.GetUserByID(int.Parse(args[0])).transferMoney(int.Parse(args[1]), int.Parse(args[2]));
+								sendData("Successfully passed money around!", ref sslStream);
+							}
+							else
+							{
+								throw new Exception("could not finish money transfer due to account verification failing.");
+							}
+						}
+						catch(Exception e)
+						{
+							Console.WriteLine("error occured, error details : " + e);
+							sendData("could not pass money between the accounts.", ref sslStream);
+						}
+					}
+
+					else if(sRequest.Contains("ClearComments"))
+					{
+						user.GetUserByID(0).clearComments();
+						sendData("done.", ref sslStream);
+					}
+
 					else if(sRequest.Contains("GetUserData"))
 					{
 						try

@@ -27,5 +27,10 @@ namespace babysittingIL.reviewManagement
 			}
 			return reviewsStr;
 		}
+
+		public static void clearComments()
+		{
+			reviews[0] = new List<review>();
+		}
 	}
 }	
