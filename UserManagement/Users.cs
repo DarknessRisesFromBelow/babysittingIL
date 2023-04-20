@@ -4,6 +4,7 @@ using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 using babysittingIL.reviewManagement;
+using babysittingIL.Payments;
 using System.Net;
 using System;
 
@@ -119,6 +120,7 @@ namespace babysittingIL.UserManagement
 			user targetUser = user.GetUserByID(targetID);
 			float targetRate = targetUser.GetRate();
 			Console.WriteLine("transferred " + (targetRate * hours) + " nils between " + GetUsername() + " and " + targetUser.GetUsername());
+			PaymentsManager.RunTestTransaction();
 			throw new NotImplementedException();
 		}
 

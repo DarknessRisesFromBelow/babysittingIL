@@ -13,3 +13,5 @@ c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\refint\baby
 c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysittingIL.pdb
 c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysittingIL.genruntimeconfig.cache
 c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\ref\babysittingIL.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysittingIL.csproj.CopyComplete
