@@ -3,109 +3,108 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 using babysittingIL.Constants;
 
 namespace babysittingIL.Payments
 {
 	class PaymentsManager
 	{
- 		public static async Task RunTestTransaction()
-   		{
+		public static async Task RunTestTransaction()
+		{
    		    // Replace with your own values
-   		    string baseUrl = "https://sandbox.api.visa.com";
-   		    string apiKey = Consts.VisaAPIKey;
-   		    string sharedSecret = Consts.VisaAPISharedSecret;
-   		    string resourcePath = "/visadirect/fundstransfer/v1/pullfundstransactions";
-   		    string userId = "ymacorpemail@gmail.com";
-   		    string password = "Yma160207.";
+			string baseUrl = "https://sandbox.api.visa.com";
+			string apiKey = Consts.VisaAPIKey;
+			string sharedSecret = Consts.VisaAPISharedSecret;
+			string resourcePath = "/visadirect/fundstransfer/v1/pullfundstransactions";
    		    // Build the request body
-   		    var request = new
-   		    {
-   		        acquirerCountryCode = "840",
-   		        acquiringBin = "408999",
-   		        amount = "124.05",
-   		        surcharge = "15",
-   		        businessApplicationId = "AA",
-   		        cardAcceptor = new
-   		        {
-   		            address = new
-   		            {
-   		                country = "USA",
-   		                county = "San Mateo",
-   		                state = "CA",
-   		                zipCode = "94404"
-   		            },
-   		            idCode = "VMT200911026070",
-   		            name = "Visa Inc. USA-Foster City",
-   		            terminalId = "365539"
-   		        },
-   		        localTransactionDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"),
-   		        merchantCategoryCode = "6012",
-   		        pointOfServiceData = new
-   		        {
-   		            environment = "moto",
-   		            panEntryMode = "90",
-   		            posConditionCode = "00"
-   		        },
-   		        recipientName = "John Smith",
-   		        recipientPrimaryAccountNumber = "4957030420210496",
-   		        retrievalReferenceNumber = "330000550000",
-   		        senderAccountNumber = "4653459515756154",
-   		        senderAddress = "901 Metro Center Blvd",
-   		        senderCity = "Foster City",
-   		        senderCountryCode = "840",
-   		        senderName = "Mohammed Qasim",
-   		        senderReference = "",
-   		        senderStateCode = "CA",
-   		        sourceOfFundsCode = "05",
-   		        systemsTraceAuditNumber = "451050",
-   		        transactionCurrencyCode = "USD",
-   		        transactionIdentifier = "381228649430015"
-   		    };
-
+			var request = new
+			{
+				acquirerCountryCode = "840",
+				acquiringBin = "408999",
+				amount = "124.05",
+				surcharge = "15",
+				businessApplicationId = "AA",
+				cardAcceptor = new
+				{
+					address = new
+					{
+						country = "USA",
+						county = "081",
+						state = "CA",
+						zipCode = "94404"
+					},
+					idCode = "ABCD1234ABCD123",
+					name = "Visa Inc. USA-Foster City",
+					terminalId = "ABCD1234"
+				},
+				localTransactionDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"),
+				merchantCategoryCode = "6012",
+				pointOfServiceData = new
+				{
+					environment = "moto",
+					panEntryMode = "90",
+					posConditionCode = "00"
+				},
+				recipientName = "John Smith",
+				recipientPrimaryAccountNumber = "4957030420210496",
+				retrievalReferenceNumber = "330000550000",
+				senderPrimaryAccountNumber = "4653459515756154",
+				senderAddress = "901 Metro Center Blvd",
+				senderCity = "Foster City",
+				senderCountryCode = "840",
+				senderStateCode = "CA",
+				systemsTraceAuditNumber = "451050",
+				transactionCurrencyCode = "USD",
+			};
+			string timestamp = DateTime.UtcNow.ToString("o");
+			string xPayToken = GenerateXPayToken(resourcePath, "", request.ToString(), apiKey, sharedSecret, timestamp);
    		    // Serialize the request body to JSON
-   		    string jsonRequest = JsonConvert.SerializeObject(request);
-
-   		    // Calculate the HMAC signature
-   		    string timestamp = DateTime.UtcNow.ToString("o");
-   		    string preHashString = timestamp + resourcePath + jsonRequest;
-   		    byte[] sharedSecretBytes = Encoding.UTF8.GetBytes(sharedSecret);
-   		    byte[] preHashBytes = Encoding.UTF8.GetBytes(preHashString);
-   		    byte[] hashBytes;
-   		    using (var hasher = new System.Security.Cryptography.HMACSHA256(sharedSecretBytes))
-   		    {
-   		        hashBytes = hasher.ComputeHash(preHashBytes);
-   		    }
-   		    string hash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+			string jsonRequest = JsonConvert.SerializeObject(request);
 
    		    // Build the HTTP request
-   		    string url = baseUrl + resourcePath;
-   		    var client = new HttpClient();
-   		    client.DefaultRequestHeaders.Accept.Clear();
-   		    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-   		    client.DefaultRequestHeaders.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(apiKey + ":" + password)));
-   		    client.DefaultRequestHeaders.Add("X-Visa-Auth-Nonce", Guid.NewGuid().ToString("N"));
-   		    client.DefaultRequestHeaders.Add("X-Visa-Auth-Timestamp", timestamp);
-   		    client.DefaultRequestHeaders.Add("X-Visa-Auth-Signature", hash);
+			string url = baseUrl + resourcePath;
+			var client = new HttpClient();
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+			client.DefaultRequestHeaders.Add("Authorization", "Bearer " + xPayToken);
 
-   		    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-   		    var response = await client.PostAsync(url, content);
+
+			var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+			var response = await client.PostAsync(url, content);
    		     // Check if the request was successful
-    		if (response.IsSuccessStatusCode)
-   		 	{
+			if (response.IsSuccessStatusCode)
+			{
         		// Deserialize the response body
-        		string responseBody = await response.Content.ReadAsStringAsync();
-        		var responseObject = JsonConvert.DeserializeObject(responseBody);
+				string responseBody = await response.Content.ReadAsStringAsync();
+				var responseObject = JsonConvert.DeserializeObject(responseBody);
 
         		// Do something with the response
-        		Console.WriteLine(responseObject);
-    		}
-    		else
-    		{
+				Console.WriteLine(responseObject);
+			}
+			else
+			{
       		  	// Log the error
-        		Console.WriteLine(response.StatusCode);
-        		Console.WriteLine(await response.Content.ReadAsStringAsync());
-    		}
+				Console.WriteLine(response.StatusCode);
+				Console.WriteLine(await response.Content.ReadAsStringAsync());
+			}
+		}
+
+		public static string GenerateXPayToken(string resourcePath, string queryString, string requestBody, string apiKey, string sharedSecret, string timestamp)
+		{
+			var beforeHash = apiKey + timestamp + resourcePath + queryString + requestBody;
+			var secretBytes = Encoding.UTF8.GetBytes(sharedSecret);
+			var inputBytes = Encoding.UTF8.GetBytes(beforeHash);
+
+			using (var hmac = new HMACSHA256(secretBytes))
+			{
+				var hashBytes = hmac.ComputeHash(inputBytes);
+				var base64Hash = Convert.ToBase64String(hashBytes);
+
+				var token = "xv2:" + timestamp + ":" + base64Hash;
+
+				return token;
+			}
 		}
 	}
 }
