@@ -1,6 +1,8 @@
 using babysittingIL.UserManagement;
 using babysittingIL.UserManagement.location;
 using babysittingIL.Constants;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace babysittingIL.UserExperience
 {
@@ -10,7 +12,7 @@ namespace babysittingIL.UserExperience
 		{	
 			string users = "";
 			user myUser = user.GetUserByID(id);
-			for(int i = 0; i < user.users.Count; i++)
+			Parallel.For(0, user.users.Count, i=>
 			{
 				user secondUser = user.GetUserByID(i);
 				float dist = locationObject.getDistance(myUser.getLocation(),secondUser.getLocation());
@@ -23,7 +25,7 @@ namespace babysittingIL.UserExperience
 					else
 						users += user.users[i].GetData() +"|||";
 				}
-			}
+			});
 			return users;
 		}
 	}

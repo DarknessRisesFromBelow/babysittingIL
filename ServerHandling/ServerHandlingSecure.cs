@@ -147,7 +147,6 @@ namespace babysittingIL.ServerHandling
 							sendData("could not pass money between the accounts.", ref sslStream);
 						}
 					}
-
 					else if(sRequest.Contains("ClearComments"))
 					{
 						user.GetUserByID(0).clearComments();

@@ -17,6 +17,12 @@ namespace babysittingIL.UserManagement.location
 		public void setLocation((double,double) nLocation) => location=nLocation;
 		public void setLongitude(int longitude) => location = (longitude, location.Item2);
 		public void setLatitude(int latitude) => location = (location.Item1, latitude);
+		
+		public override string ToString()
+		{
+			return "{" + getLongitude() + "," + getLatitude() + "}";
+		}
+
 		public static float getDistance((double,double) pos1, (double,double) pos2)
 		{
 			var R = 6378.137f;

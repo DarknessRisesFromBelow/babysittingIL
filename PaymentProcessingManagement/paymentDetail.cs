@@ -1,6 +1,8 @@
 namespace babysittingIL.Payments
 {
-	private string userId;
-	private string password;
-	
+	class paymentDetail
+	{
+		private string userId;
+		private string password;
+	}
 }
