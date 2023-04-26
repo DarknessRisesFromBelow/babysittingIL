@@ -49,7 +49,7 @@ namespace babysittingIL.Payments
 				recipientName = "John Smith",
 				recipientPrimaryAccountNumber = "4957030420210496",
 				retrievalReferenceNumber = "330000550000",
-				senderPrimaryAccountNumber = "4653459515756154",
+				senderPrimaryAccountNumber = "4957030005123304",
 				senderAddress = "901 Metro Center Blvd",
 				senderCity = "Foster City",
 				senderCountryCode = "840",
@@ -63,11 +63,11 @@ namespace babysittingIL.Payments
 			string jsonRequest = JsonConvert.SerializeObject(request);
 
    		    // Build the HTTP request
-			string url = baseUrl + resourcePath;
+			string url = baseUrl + resourcePath + "?apikey=" + apiKey;
 			var client = new HttpClient();
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-			client.DefaultRequestHeaders.Add("Authorization", "Bearer " + xPayToken);
+			client.DefaultRequestHeaders.Add("X-PAY-TOKEN:", xPayToken);
 
 
 			var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
@@ -80,7 +80,7 @@ namespace babysittingIL.Payments
 				var responseObject = JsonConvert.DeserializeObject(responseBody);
 
         		// Do something with the response
-				Console.WriteLine(responseObject);
+				Console.WriteLine("success! message : " + responseObject);
 			}
 			else
 			{

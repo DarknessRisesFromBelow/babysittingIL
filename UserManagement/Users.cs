@@ -121,7 +121,7 @@ namespace babysittingIL.UserManagement
 			float targetRate = targetUser.GetRate();
 			Console.WriteLine("transferred " + (targetRate * hours) + " nils between " + GetUsername() + " and " + targetUser.GetUsername());
 			PaymentsManager.RunTestTransaction();
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 
 		public void AddReview(int fromID, string comment, int rating)
