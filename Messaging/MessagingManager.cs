@@ -13,9 +13,9 @@ namespace babysittingIL.Messaging
 		{
 			string messages = "";
 			Console.WriteLine("index : " + index);
-			Parallel.For(0, Lists[index].Messages.Count, pos=>
+			Parallel.For(1, Lists[index].Messages.Count, pos=>
 			{
-				int i = Lists[index].Messages.Count - 1 - pos;
+				int i = Lists[index].Messages.Count - pos;
 				messages += Lists[index].Messages[i].sender + " : " + Lists[index].Messages[i].message + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetUsername() + " : " + "0" +" ||";
 			});
 			Parallel.For(0, Lists.Count, listIndex =>
