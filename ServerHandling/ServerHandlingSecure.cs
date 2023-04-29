@@ -260,21 +260,21 @@ namespace babysittingIL.ServerHandling
 						{
 							sRequest = sRequest.Replace("MessageUser", "");
 							string[] args = sRequest.Split(",");
-							string message = "";
-							for(int o = 2; o < args.Length - 1;o++)
-							{
-								if(o + 1 != args.Length - 1)
-								{
-									message += args[o] + ",";
-								}
-								else
-								{
-									message += args[o];
-								}
-							}
-							Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ message);
 							if(sessionManager.validate(client.Client.RemoteEndPoint,args[args.Length - 1],int.Parse(args[0])))
-							{
+							{	
+								string message = "";
+								for(int o = 2; o < args.Length - 1;o++)
+								{
+									if(o + 1 != args.Length - 1)
+									{
+										message += args[o] + ",";
+									}
+									else
+									{
+										message += args[o];
+									}
+								}
+								Console.WriteLine(int.Parse(args[0])+","+ int.Parse(args[1])+","+ message);
 								new Message(int.Parse(args[0]), int.Parse(args[1]),message);
 								sendData("sent message.", ref sslStream);
 							}
