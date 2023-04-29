@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using YMA.Management;
 using babysittingIL.UserManagement;
+using babysittingIL.sorting;
 using System.Linq;
 
 namespace babysittingIL.Messaging
@@ -32,16 +33,7 @@ namespace babysittingIL.Messaging
 
 			// this code sucks, change it for something better
 			string[] messagesArr = messages.Split("||");
-			Parallel.For(0, messagesArr.Length * messagesArr.Length, i=>
-			{
-				i = i % (messagesArr.Length - 1);
-				if(i > 0 && ulong.Parse(messagesArr[i].Split(":")[4]) > ulong.Parse(messagesArr[i - 1].Split(":")[4]))
-				{
-					string temp = messagesArr[i-1];
-					messagesArr[i-1] = messagesArr[i];
-					messagesArr[i] = temp;
-				}
-			});
+			algorithms.gnomeSort(messagesArr,messagesArr.Length - 1);
 			messages = string.Join("||", messagesArr);
 			Console.WriteLine("messages were : " + messages);
 			return messages;
