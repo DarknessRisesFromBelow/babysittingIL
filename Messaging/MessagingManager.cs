@@ -17,7 +17,7 @@ namespace babysittingIL.Messaging
 			Parallel.For(1, Lists[index].Messages.Count, pos=>
 			{
 				int i = Lists[index].Messages.Count - pos;
-				messages += Lists[index].Messages[i].sender + " : " + Lists[index].Messages[i].message + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetUsername() + " : " + "0" + " : " + Lists[index].Messages[i].timeStamp + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetPFP() +" ||";
+				messages += Lists[index].Messages[i].sender + " : " + Lists[index].Messages[i].message + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetUsername() + " : " + "0" + " : " + Lists[index].Messages[i].timeStamp + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetPFP() + " : " + user.GetUserByID(Lists[index].Messages[i].sender).GetPFP() + " ||";
 			});
 			Parallel.For(0, Lists.Count, listIndex =>
 			{
@@ -25,7 +25,7 @@ namespace babysittingIL.Messaging
 				{
 					if(Lists[listIndex].Messages[i].sender == index)
 					{
-						messages += Lists[listIndex].Messages[i].reciver + " : " + Lists[listIndex].Messages[i].message + " : " + user.GetUserByID(Lists[listIndex].Messages[i].reciver).GetUsername() + " : " + "1" + " : " + Lists[listIndex].Messages[i].timeStamp + " : " + user.GetUserByID(Lists[listIndex].Messages[i].sender).GetPFP() + " ||";		
+						messages += Lists[listIndex].Messages[i].reciver + " : " + Lists[listIndex].Messages[i].message + " : " + user.GetUserByID(Lists[listIndex].Messages[i].reciver).GetUsername() + " : " + "1" + " : " + Lists[listIndex].Messages[i].timeStamp + " : " + user.GetUserByID(Lists[listIndex].Messages[i].sender).GetPFP() + " : " + user.GetUserByID(Lists[listIndex].Messages[i].reciver).GetPFP() + " ||";		
 					}
 				}
 			});
