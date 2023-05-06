@@ -2,6 +2,13 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "Microsoft.NET.Build.Containers/0.4.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.NET.Build.Containers.props": {},
+          "build/Microsoft.NET.Build.Containers.targets": {}
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -18,6 +25,47 @@
     }
   },
   "libraries": {
+    "Microsoft.NET.Build.Containers/0.4.0": {
+      "sha512": "36eVIs9869t9mpyvAUFRMFnlT4Y+lvyo6IyK3I63+cgfpG+YVB3Hpjf8CmG6jMumVMCxoeUyr9S9un6wL9QCXg==",
+      "type": "package",
+      "path": "microsoft.net.build.containers/0.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Microsoft.NET.Build.Containers.props",
+        "build/Microsoft.NET.Build.Containers.targets",
+        "containerize/Microsoft.NET.Build.Containers.dll",
+        "containerize/Newtonsoft.Json.dll",
+        "containerize/NuGet.Common.dll",
+        "containerize/NuGet.Configuration.dll",
+        "containerize/NuGet.Frameworks.dll",
+        "containerize/NuGet.Packaging.dll",
+        "containerize/NuGet.Versioning.dll",
+        "containerize/System.CommandLine.dll",
+        "containerize/Valleysoft.DockerCredsProvider.dll",
+        "containerize/containerize.dll",
+        "containerize/containerize.runtimeconfig.json",
+        "microsoft.net.build.containers.0.4.0.nupkg.sha512",
+        "microsoft.net.build.containers.nuspec",
+        "tasks/net472/Microsoft.NET.Build.Containers.dll",
+        "tasks/net472/Newtonsoft.Json.dll",
+        "tasks/net472/NuGet.Common.dll",
+        "tasks/net472/NuGet.Configuration.dll",
+        "tasks/net472/NuGet.Frameworks.dll",
+        "tasks/net472/NuGet.Packaging.dll",
+        "tasks/net472/NuGet.Versioning.dll",
+        "tasks/net7.0/Microsoft.NET.Build.Containers.deps.json",
+        "tasks/net7.0/Microsoft.NET.Build.Containers.dll",
+        "tasks/net7.0/Newtonsoft.Json.dll",
+        "tasks/net7.0/NuGet.Common.dll",
+        "tasks/net7.0/NuGet.Configuration.dll",
+        "tasks/net7.0/NuGet.Frameworks.dll",
+        "tasks/net7.0/NuGet.Packaging.dll",
+        "tasks/net7.0/NuGet.Versioning.dll",
+        "tasks/net7.0/Valleysoft.DockerCredsProvider.dll"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -51,6 +99,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Microsoft.NET.Build.Containers >= 0.4.0",
       "Newtonsoft.Json >= 13.0.3"
     ]
   },
@@ -67,12 +116,14 @@
       "outputPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Magshimim\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Magshimim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -91,6 +142,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Microsoft.NET.Build.Containers": {
+            "target": "Package",
+            "version": "[0.4.0, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
@@ -112,7 +167,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

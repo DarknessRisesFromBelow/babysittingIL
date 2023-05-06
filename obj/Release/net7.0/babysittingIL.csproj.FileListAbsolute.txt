@@ -1,0 +1,17 @@
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\babysittingIL.exe
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\babysittingIL.deps.json
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\babysittingIL.runtimeconfig.json
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\babysittingIL.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\babysittingIL.pdb
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Release\net7.0\Newtonsoft.Json.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.csproj.AssemblyReference.cache
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.AssemblyInfoInputs.cache
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.AssemblyInfo.cs
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.csproj.CoreCompileInputs.cache
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.csproj.CopyComplete
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\refint\babysittingIL.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.pdb
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\babysittingIL.genruntimeconfig.cache
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Release\net7.0\ref\babysittingIL.dll

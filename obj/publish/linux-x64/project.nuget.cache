@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Nke2aMX0yyaT4MrYkm4FzcNtqrYKUmUKkSjjrQW/BSi/GTUy969KGI/d1aPtW14lUrYwHX39zlS1nRXbHcUmJQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.net.build.containers\\0.4.0\\microsoft.net.build.containers.0.4.0.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\7.0.5\\microsoft.netcore.app.runtime.linux-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\7.0.5\\microsoft.aspnetcore.app.runtime.linux-x64.7.0.5.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\7.0.5\\microsoft.netcore.app.host.linux-x64.7.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

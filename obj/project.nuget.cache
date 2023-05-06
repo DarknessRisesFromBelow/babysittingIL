@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "FNolA//bmSoNA3GalF4fc3wVCgwafolp/ZVrb87c0s/TrUTrycRGoT4u3KDGG+QSVuvYaQEETDZmd167XsnxvA==",
+  "dgSpecHash": "whwXGRsJD4qFN8yuINOxXVjvXip5rdHdc6+jZmrTxKNWahkG0bpdV8Xd2PU1MIT1WcobNn9xBvirx6DQAMiHsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.net.build.containers\\0.4.0\\microsoft.net.build.containers.0.4.0.nupkg.sha512",
     "C:\\Users\\Magshimim\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
