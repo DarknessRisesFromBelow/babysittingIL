@@ -14,7 +14,7 @@ namespace babysittingIL.calendarManagement
 			}
 		}
 		
-		public string getTakenTimes(int userID)
+		public static string getTakenTimes(int userID)
 		{
 			try
 			{
