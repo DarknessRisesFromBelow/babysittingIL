@@ -62,7 +62,7 @@ namespace babysittingIL.ServerHandling
 			String sBuffer = "";  
 			int iTotBytes = Encoding.UTF8.GetBytes(data).Length;  
 			sBuffer +=  "HTTP/1.1 200\r\n";  
-			sBuffer += "Server: cx1193719-b\r\n";
+			sBuffer += "Server: BBIL-SERVER-0\r\n";
 			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
 			sBuffer += "Content-Type: text/html \r\n";  
 			sBuffer += "Accept-Ranges: bytes\r\n";  

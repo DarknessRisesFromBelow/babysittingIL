@@ -2,6 +2,7 @@ using YMA.Management;
 using babysittingIL.Constants;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
+using babysittingIL.calendarManagement;
 using babysittingIL.sessionManagement;
 using babysittingIL.reviewManagement;
 using babysittingIL.Payments;
@@ -86,6 +87,8 @@ namespace babysittingIL.UserManagement
 		public string GetReviews() => reviewManager.getReviews(GetID()); 
 		public (double,double) getLocation() => locationManager.locations[GetID()].getLocation();
 		public void setLocation((double,double) nLocation) => locationManager.locations[GetID()].setLocation(nLocation);
+		public void addEvent(string startDate, float length) => calendarManagement.addEvent(GetID(), startDate, length);
+		public string getEvents() => calendarManagement.getTakenTimes(GetID());
 		public static int MakeNew(string options)
 		{
 			try

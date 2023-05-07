@@ -15,3 +15,8 @@ c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysitting
 c:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\ref\babysittingIL.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysittingIL.csproj.CopyComplete
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Auth.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Calendar.v3.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Core.dll
