@@ -8,9 +8,9 @@ namespace babysittingIL.calendarManagement
 			{
 				calendar.addEvent(userID, length, startDate);
 			}
-			catch
+			catch (Exception ex)
 			{
-				throw new Exception("could not add Event.");
+				throw new Exception("could not add Event. Event detail : (" + userID + "," + startDate + "," + length + ")" + "and exception was " + ex);
 			}
 		}
 		
@@ -20,9 +20,9 @@ namespace babysittingIL.calendarManagement
 			{
 				return calendar.getEvents(userID);
 			}
-			catch
+			catch (Exception ex)
 			{
-				throw new Exception("error at getting events.");
+				throw new Exception("error getting events. exception was " + ex);
 			}
 		}
 

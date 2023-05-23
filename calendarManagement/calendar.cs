@@ -14,6 +14,7 @@ namespace babysittingIL.calendarManagement
 
 		public static string getEvents(int id)
 		{
+			removeOldEvents(id);
 			string userEvents = "";
 			for(int i = 0; i < events[id].Count; i++)
 			{
@@ -29,7 +30,7 @@ namespace babysittingIL.calendarManagement
 		{
 			for(int i = 0; i < events[id].Count; i++)
 			{
-				if(DateTime.Parse(events[id][i].Split("--")[0]) < DateTime.Today)
+				if(DateTime.Parse(events[id][i].Split("--")[0].Replace(" ", "+")) < DateTime.Today)
 				{
 					events[id].RemoveAt(i);
 				}

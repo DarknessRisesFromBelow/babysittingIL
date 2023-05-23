@@ -44,6 +44,7 @@ namespace babysittingIL.UserManagement
 			users.Add(this);
 			Console.WriteLine("added user to user list.");
 			reviewManager.AddUser(GetID());
+			calendar.addUser();
 			if(userType == UserType.Babysitter)
 			{
 				SendMail("welcome to BabysittingIL!", Consts.BabysitterWelcomeMessage);

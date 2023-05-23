@@ -152,7 +152,44 @@ namespace babysittingIL.ServerHandling
 						user.GetUserByID(0).clearComments();
 						sendData("done.", ref sslStream);
 					}
-
+					else if(sRequest.Contains("ReserveBabysitter"))
+					{
+						try
+						{
+							String[] parts = sRequest.Replace("ReserveBabysitter", "").Split(",");
+							user myUser = user.GetUserByID(int.Parse(parts[0]));
+							if(sessionManager.validate(client.Client.RemoteEndPoint,parts[parts.Length - 1],int.Parse(parts[parts.Length - 2])))
+							{
+								myUser.addEvent(parts[1], float.Parse(parts[2]));
+								sendData("Successfully added event!", ref sslStream);
+							}
+							else
+							{
+								throw new Exception("could not verify user identity, did not add event.");
+							}
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine("error adding event, error info : " + ex);
+							sendData("could not add event", ref sslStream);
+						}
+					}
+					else if(sRequest.Contains("GetEvents"))
+					{
+						try
+						{
+							sRequest = sRequest.Replace("GetEvents", "");
+							string[] parts = sRequest.Split(",");
+							user accref = user.GetUserByID(int.Parse(parts[0]));
+							sendData("" + accref.getEvents(), ref sslStream);	
+						}
+						catch(Exception ex)
+						{
+							Console.WriteLine("error occured, error details : " + ex);
+							sendData("could not get events.", ref sslStream);
+						}
+						
+					}
 					else if(sRequest.Contains("GetUserData"))
 					{
 						try
