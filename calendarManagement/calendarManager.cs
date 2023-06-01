@@ -2,11 +2,11 @@ namespace babysittingIL.calendarManagement
 {
 	public class calendarManager
 	{
-		public static void addEvent(int userID, string startDate, float length)
+		public static void addEvent(int userID, string startDate, float length, int reserverID)
 		{
 			try
 			{
-				calendar.addEvent(userID, length, startDate);
+				calendar.addEvent(userID, length, startDate, reserverID);
 			}
 			catch (Exception ex)
 			{

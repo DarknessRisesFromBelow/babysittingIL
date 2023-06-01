@@ -154,13 +154,14 @@ namespace babysittingIL.ServerHandling
 					}
 					else if(sRequest.Contains("ReserveBabysitter"))
 					{
+						// https://{serverip}/ReserveBabysitter{targetID},{Date},{eventLength},{reserverID},{sessionID}
 						try
 						{
 							String[] parts = sRequest.Replace("ReserveBabysitter", "").Split(",");
 							user myUser = user.GetUserByID(int.Parse(parts[0]));
 							if(sessionManager.validate(client.Client.RemoteEndPoint,parts[parts.Length - 1],int.Parse(parts[parts.Length - 2])))
 							{
-								myUser.addEvent(parts[1], float.Parse(parts[2]));
+								myUser.addEvent(parts[1], float.Parse(parts[2]), int.Parse(parts[parts.Length - 2]));
 								sendData("Successfully added event!", ref sslStream);
 							}
 							else

@@ -1,4 +1,5 @@
 using System;
+using babysittingIL.UserManagement;
 
 namespace babysittingIL.calendarManagement
 {
@@ -6,9 +7,10 @@ namespace babysittingIL.calendarManagement
 	{
 		static List<List<string>> events = new List<List<string>>();
 		
-		public static void addEvent(int id, float length, string startingTime)
+		public static void addEvent(int id, float length, string startingTime, int reserverID)
 		{
-			events[id].Add("" + startingTime + "--" + length);
+			user accref = user.GetUserByID(reserverID);
+			events[id].Add("" + startingTime + "--" + length + "--" + accref.GetPFP() + "--" + accref.GetUsername());
 			removeOldEvents(id);
 		}
 
