@@ -6,6 +6,7 @@ using babysittingIL.calendarManagement;
 using babysittingIL.sessionManagement;
 using babysittingIL.reviewManagement;
 using babysittingIL.Payments;
+using babysittingIL.storingManagement;
 using System.Net;
 using System;
 
@@ -53,6 +54,7 @@ namespace babysittingIL.UserManagement
 			{
 				SendMail("welcome to BabysittingIL!", Consts.ParentWelcomeMessage);
 			}
+			storingManager.saveUser(this);
 		}
 
 		////////////////////////////// obselete //////////////////////////////
@@ -123,8 +125,8 @@ namespace babysittingIL.UserManagement
 			Console.WriteLine("Executed!");
 			user targetUser = user.GetUserByID(targetID);
 			float targetRate = targetUser.GetRate();
-			Console.WriteLine("transferred " + (targetRate * hours) + " nils between " + GetUsername() + " and " + targetUser.GetUsername());
-			PaymentsManager.RunTestTransaction();
+			Console.WriteLine("transferred " + (targetRate * hours) + "nils between " + GetUsername() + " and " + targetUser.GetUsername());
+			PaymentsManager.payUser(targetID, (targetRate * hours));
 			//throw new NotImplementedException();
 		}
 
