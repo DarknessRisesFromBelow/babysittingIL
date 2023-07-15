@@ -10,6 +10,7 @@ namespace babysittingIL.ServerHandling
 	using System.Security.Cryptography.X509Certificates;  
 	using System.Text;  
 	using System.Threading;
+	using babysittingIL.storingManagement;
 	using babysittingIL.UserManagement;
 	using babysittingIL.UserExperience;
 	using babysittingIL.Messaging;
@@ -42,6 +43,7 @@ namespace babysittingIL.ServerHandling
 			manager = new HomeManager();
 			serverCertificate = new X509Certificate(certificate, password);
 			TcpListener listener = new TcpListener(IPAddress.Any, port);
+			File.WriteAllText(consts.FILEPATH + consts.USER_DB_FILENAME, String.Empty);
 			listener.Start();
 			while (true)
 			{
