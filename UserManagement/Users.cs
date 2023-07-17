@@ -31,7 +31,7 @@ namespace babysittingIL.UserManagement
 		public static List<user> users = new();
 		bool LoggedIn = false;
 		string sessionID = "";
-		string bio = "";
+		string bio = "Hey There, I Am using BabysittingIL!";
 
 
 
