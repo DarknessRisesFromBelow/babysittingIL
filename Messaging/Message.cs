@@ -1,5 +1,6 @@
+using babysittingIL.PushMessaging;
 using babysittingIL.UserManagement;
-using System;
+using System; 
 
 namespace babysittingIL.Messaging
 {
@@ -17,6 +18,8 @@ namespace babysittingIL.Messaging
 			message = text;
 			timeStamp = unchecked((ulong)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
 			MessagingManager.Lists[To].Messages.Add(this);
-		}
+            PushMessagingManager.sendMessage(From, To, text);
+
+        }
 	}
 }

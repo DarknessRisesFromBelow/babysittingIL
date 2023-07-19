@@ -9,5 +9,6 @@
     <PackageReference Include="Google.Apis.Calendar.v3" Version="1.60.0.3017" />
     <PackageReference Include="Microsoft.NET.Build.Containers" Version="0.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="onesignalAPI" Version="2.0.0" />
   </ItemGroup>
 </Project>

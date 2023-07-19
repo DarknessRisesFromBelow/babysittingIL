@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4D8iQIXsPljb7MtkhFHPq6M8l8YA8VK5Wp+Idt3PnogntdnOxNFtLurdZfrkJHT9IuLTPrV07l2ru50JMLTK+A==",
+  "dgSpecHash": "lSipIBr94I1nCMCrjyNQv74t5tEP2nfsbTLOCNlTgtcYw5WPbtyt3PdFp3I0B/QI6XbJvAfHMELVSKH00VdQJQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,13 @@
     "C:\\Users\\Magshimim\\.nuget\\packages\\google.apis.auth\\1.60.0\\google.apis.auth.1.60.0.nupkg.sha512",
     "C:\\Users\\Magshimim\\.nuget\\packages\\google.apis.calendar.v3\\1.60.0.3017\\google.apis.calendar.v3.1.60.0.3017.nupkg.sha512",
     "C:\\Users\\Magshimim\\.nuget\\packages\\google.apis.core\\1.60.0\\google.apis.core.1.60.0.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\jsonsubtypes\\1.8.0\\jsonsubtypes.1.8.0.nupkg.sha512",
     "C:\\Users\\Magshimim\\.nuget\\packages\\microsoft.net.build.containers\\0.4.0\\microsoft.net.build.containers.0.4.0.nupkg.sha512",
-    "C:\\Users\\Magshimim\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Magshimim\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\onesignalapi\\2.0.0\\onesignalapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\restsharp\\106.13.0\\restsharp.106.13.0.nupkg.sha512",
+    "C:\\Users\\Magshimim\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

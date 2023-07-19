@@ -20,3 +20,7 @@ C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Auth.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Calendar.v3.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Google.Apis.Core.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\JsonSubTypes.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\OneSignalApi.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Polly.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\RestSharp.dll
