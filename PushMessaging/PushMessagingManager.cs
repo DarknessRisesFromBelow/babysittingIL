@@ -6,9 +6,16 @@ using babysittingIL.UserManagement;
 
 namespace babysittingIL.PushMessaging
 {
+
+	enum notificationType
+	{
+		reservation = 1,
+		message = 2
+	}
+
 	class PushMessagingManager
 	{
-		public static void sendMessage(int fromID, int targetID, string content)
+		public static void sendMessage(int fromID, int targetID, string content, notificationType notifType)
 		{
 			Configuration config = new Configuration();
 			config.BasePath = "https://onesignal.com/api/v1";
@@ -16,7 +23,7 @@ namespace babysittingIL.PushMessaging
 			config.AccessToken = "YzQ0MjYxMDAtOTY2Ni00MWIwLWEzZGUtYmU4ZjUwMzAwZDky";
 
 			var apiInstance = new DefaultApi(config);
-            var notification = new Notification(includeExternalUserIds: new List<string>() { targetID.ToString() }, largeIcon: user.GetUserByID(fromID).GetPFP(), subtitle: new(en: user.GetUserByID(fromID).GetUsername() + " has sent you a message!"), headings: new(en: user.GetUserByID(fromID).GetUsername() + " has sent you a message!"), contents: new(en: content), appId: "697dd96c-162f-4af5-82a4-e42990cdec84"); // Notification | 
+            var notification = new Notification(includeExternalUserIds: new List<string>() { targetID.ToString() }, largeIcon: user.GetUserByID(fromID).GetPFP(), subtitle: new(en: user.GetUserByID(fromID).GetUsername() + ((notifType == notificationType.message) ? " has sent you a message!" : notifType == notificationType.reservation ? " has booked you!" : "ERROR!ERROR!ERROR!ERROR!ERROR!")), headings: new(en: user.GetUserByID(fromID).GetUsername() + ((notifType == notificationType.message) ? " has sent you a message!" : notifType == notificationType.reservation ? " has booked you" : "ERROR!ERROR!ERROR!ERROR!ERROR!ERROR!ERROR!")), contents: new(en: content), appId: "697dd96c-162f-4af5-82a4-e42990cdec84"); // Notification | 
 
             try
 			{

@@ -17,14 +17,22 @@ namespace babysittingIL.sorting
 			while (index < n) 
 			{
 				if (index == 0)
-				index++;
-				if (ulong.Parse(arr[index].Split(" : ")[4]) >= ulong.Parse(arr[index - 1].Split(" : ")[4]))
-				index++;
-				else {
-					string temp = arr[index];
-					arr[index] = arr[index - 1];
-					arr[index - 1] = temp;
-					index--;
+					index++;
+				
+				try
+				{
+					if (ulong.Parse(arr[index].Split(" : ")[4]) >= ulong.Parse(arr[index - 1].Split(" : ")[4]))
+						index++;
+					else {
+						string temp = arr[index];
+						arr[index] = arr[index - 1];
+						arr[index - 1] = temp;
+						index--;
+					}		
+				}
+				catch(Exception ex)
+				{
+					Console.WriteLine("could not sort array, probably not enough items");
 				}
 			}
 		}

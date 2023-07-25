@@ -1,5 +1,7 @@
 using System;
 using babysittingIL.UserManagement;
+using babysittingIL.PushMessaging;
+
 
 namespace babysittingIL.calendarManagement
 {
@@ -10,8 +12,11 @@ namespace babysittingIL.calendarManagement
 		public static void addEvent(int id, float length, string startingTime, int reserverID)
 		{
 			user accref = user.GetUserByID(reserverID);
-			events[id].Add("" + startingTime + "--" + length + "--" + accref.GetPFP() + "--" + accref.GetUsername());
+			events[id].Add("" + startingTime + "--" + length + "--" + accref.GetPFP() + "--" + accref.GetUsername() + "--" + reserverID);
+			Console.WriteLine("Added Event : " + events[id][events[id].Count - 1]);
+			PushMessagingManager.sendMessage(reserverID, id, "click here to view the event!", notificationType.reservation);
 			removeOldEvents(id);
+			Console.WriteLine(getEvents(id));
 		}
 
 		public static string getEvents(int id)

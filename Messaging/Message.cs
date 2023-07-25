@@ -18,7 +18,7 @@ namespace babysittingIL.Messaging
 			message = text;
 			timeStamp = unchecked((ulong)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
 			MessagingManager.Lists[To].Messages.Add(this);
-            PushMessagingManager.sendMessage(From, To, text);
+            PushMessagingManager.sendMessage(From, To, text, notificationType.message);
 
         }
 	}
