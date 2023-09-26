@@ -66,6 +66,7 @@ namespace babysittingIL.ServerHandling
 			sBuffer +=  "HTTP/1.1 200\r\n";  
 			sBuffer += "Server: BBIL-SERVER-0\r\n";
 			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
+			sBuffer += "Access-Control-Allow-Methods : GET\r\n";
 			sBuffer += "Content-Type: text/html \r\n";  
 			sBuffer += "Accept-Ranges: bytes\r\n";  
 			sBuffer += "Content-Length: " + iTotBytes + "\r\n\r\n";  
@@ -74,6 +75,20 @@ namespace babysittingIL.ServerHandling
 			Byte[] secondData = Encoding.UTF8.GetBytes(data);
 			stream.Write(secondData);
 		}
+
+		static void respondToPreflight(ref SslStream stream)
+		{
+			String sBuffer = "";  
+			sBuffer +=  "HTTP/1.1 204\r\n";  
+			sBuffer += "Connection: keep-alive\r\n";
+			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
+			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
+			sBuffer += "Access-Control-Allow-Methods : GET\r\n";
+			sBuffer += "Access-Control-Max-Age: 86400\r\n\r\n";  
+			Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);  
+			stream.Write(bSendData);
+		}
+
 
 		/// <summary>
 		/// function processes the HTTP/S request.
@@ -107,12 +122,16 @@ namespace babysittingIL.ServerHandling
 				//Replace backslash with Forward Slash, if Any  
 				sRequest = sRequest.Replace("\\", "/").Replace("%22","'").Replace("%20", " ").Replace("GET /", "").Replace("&",",");
 				sRequest = HttpUtility.UrlDecode(sRequest);
-
-
+				bool shouldAnswer = true;
+				if(sRequest.Contains("OPTIONS /"))
+				{
+					shouldAnswer=false;
+					respondToPreflight(ref sslStream);
+				}
 
 				try
 				{
-					if(sRequest.Contains("CreateUser"))
+					if(shouldAnswer && sRequest.Contains("CreateUser"))
 					{
 						try
 						{
@@ -128,7 +147,7 @@ namespace babysittingIL.ServerHandling
 						}
 					}
 
-					else if(sRequest.Contains("PayUser"))
+					else if(shouldAnswer && sRequest.Contains("PayUser"))
 					{
 						try
 						{	
@@ -149,12 +168,12 @@ namespace babysittingIL.ServerHandling
 							sendData("could not pass money between the accounts.", ref sslStream);
 						}
 					}
-					else if(sRequest.Contains("ClearComments"))
+					else if(shouldAnswer && sRequest.Contains("ClearComments"))
 					{
 						user.GetUserByID(0).clearComments();
 						sendData("done.", ref sslStream);
 					}
-					else if(sRequest.Contains("ReserveBabysitter"))
+					else if(shouldAnswer && sRequest.Contains("ReserveBabysitter"))
 					{
 						// https://{serverip}/ReserveBabysitter{targetID},{Date},{eventLength},{reserverID},{sessionID}
 						try
@@ -177,7 +196,7 @@ namespace babysittingIL.ServerHandling
 							sendData("could not add event", ref sslStream);
 						}
 					}
-					else if(sRequest.Contains("GetEvents"))
+					else if(shouldAnswer && sRequest.Contains("GetEvents"))
 					{
 						try
 						{
@@ -193,7 +212,7 @@ namespace babysittingIL.ServerHandling
 						}
 						
 					}
-					else if(sRequest.Contains("GetUserData"))
+					else if(shouldAnswer && sRequest.Contains("GetUserData"))
 					{
 						try
 						{
@@ -207,7 +226,7 @@ namespace babysittingIL.ServerHandling
 						}
 					}
 	/////////////////////////////	obselete, use AddReview instead.	///////////////////////////// 					
-					else if(sRequest.Contains("AddRating"))
+					else if(shouldAnswer && sRequest.Contains("AddRating"))
 					{
 						try
 						{
@@ -222,7 +241,7 @@ namespace babysittingIL.ServerHandling
 						}
 					}
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-					else if (sRequest.Contains("setPfp"))
+					else if (shouldAnswer && sRequest.Contains("setPfp"))
 					{
 						try
 						{
@@ -238,7 +257,7 @@ namespace babysittingIL.ServerHandling
 							sendData("could not set new pfp", ref sslStream);
 						}
 					}
-					else if (sRequest.Contains("setRate"))
+					else if (shouldAnswer && sRequest.Contains("setRate"))
 					{
 						try
 						{
@@ -254,7 +273,7 @@ namespace babysittingIL.ServerHandling
 							sendData("could not set new rate", ref sslStream);
 						}
 					}	
-					else if (sRequest.Contains("setBio"))
+					else if (shouldAnswer && sRequest.Contains("setBio"))
 					{
 						try
 						{
@@ -280,7 +299,7 @@ namespace babysittingIL.ServerHandling
 							sendData("Could not set new bio", ref sslStream);
 						}
 					}
-					else if (sRequest.Contains("getComments"))
+					else if (shouldAnswer && sRequest.Contains("getComments"))
 					{
 						try
 						{
@@ -294,7 +313,7 @@ namespace babysittingIL.ServerHandling
 							sendData("REVIEWGETTINGERROR 51", ref sslStream);
 						}
 					}
-					else if (sRequest.Contains("MessageUser"))
+					else if (shouldAnswer && sRequest.Contains("MessageUser"))
 					{
 						try
 						{
@@ -329,7 +348,7 @@ namespace babysittingIL.ServerHandling
 						}
 					}
 
-					else if (sRequest.Contains("GetAllMessages"))
+					else if (shouldAnswer && sRequest.Contains("GetAllMessages"))
 					{
 						try
 						{
@@ -346,7 +365,7 @@ namespace babysittingIL.ServerHandling
 							sendData("invalid User!", ref sslStream);
 						}
 					}
-					else if(sRequest.Contains("GetUserHome"))
+					else if(shouldAnswer && sRequest.Contains("GetUserHome"))
 					{
 						try
 						{
@@ -363,7 +382,7 @@ namespace babysittingIL.ServerHandling
 							Console.WriteLine(ex);
 						}
 					}
-					else if (sRequest.Contains("AddReview"))
+					else if (shouldAnswer && sRequest.Contains("AddReview"))
 					{
 						try
 						{
@@ -391,7 +410,7 @@ namespace babysittingIL.ServerHandling
 
 						}
 					}
-					else if (sRequest.Contains("setGeolocation"))
+					else if (shouldAnswer && sRequest.Contains("setGeolocation"))
 					{
 						try 
 						{
@@ -412,7 +431,7 @@ namespace babysittingIL.ServerHandling
 							sendData("could not set user location.",ref sslStream);
 						}
 					}
-					else if(sRequest.Contains("login"))
+					else if(shouldAnswer && sRequest.Contains("login"))
 					{
 						try
 						{
