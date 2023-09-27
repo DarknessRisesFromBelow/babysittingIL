@@ -65,8 +65,8 @@ namespace babysittingIL.ServerHandling
 			int iTotBytes = Encoding.UTF8.GetBytes(data).Length;  
 			sBuffer +=  "HTTP/1.1 200\r\n";  
 			sBuffer += "Server: BBIL-SERVER-0\r\n";
-			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
-			sBuffer += "Access-Control-Allow-Methods : GET\r\n";
+			sBuffer += "Access-Control-Allow-Origin: *\r\n"; 
+			sBuffer += "Access-Control-Allow-Methods: GET\r\n";
 			sBuffer += "Content-Type: text/html \r\n";  
 			sBuffer += "Accept-Ranges: bytes\r\n";  
 			sBuffer += "Content-Length: " + iTotBytes + "\r\n\r\n";  
@@ -79,12 +79,12 @@ namespace babysittingIL.ServerHandling
 		static void respondToPreflight(ref SslStream stream)
 		{
 			String sBuffer = "";  
-			sBuffer +=  "HTTP/1.1 204\r\n";  
-			sBuffer += "Connection: keep-alive\r\n";
-			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
-			sBuffer += "Access-Control-Allow-Origin : *\r\n"; 
-			sBuffer += "Access-Control-Allow-Methods : GET\r\n";
-			sBuffer += "Access-Control-Max-Age: 86400\r\n\r\n";  
+			sBuffer +=  "HTTP/1.1 204\n";  
+			sBuffer += "Connection: keep-alive\n";
+			sBuffer += "Access-Control-Allow-Origin: *\n";
+			sBuffer += "Access-Control-Allow-Headers: ngrok-skip-browser-warning\n"; 
+			sBuffer += "Access-Control-Allow-Methods: GET\n";
+			sBuffer += "Access-Control-Max-Age: 86400\n\n";  
 			Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);  
 			stream.Write(bSendData);
 		}
