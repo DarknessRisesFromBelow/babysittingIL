@@ -580,8 +580,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.NET.Build.Containers' 0.4.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-p8rx-fwgq-rh2f",
+      "libraryId": "Microsoft.NET.Build.Containers",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
