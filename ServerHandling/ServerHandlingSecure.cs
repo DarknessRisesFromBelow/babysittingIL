@@ -133,68 +133,20 @@ namespace babysittingIL.ServerHandling
 				{
 					if(shouldAnswer && sRequest.Contains("CreateUser"))
 					{
-						try
-						{
-							if(user.MakeNew(sRequest.Replace("CreateUser", "").Replace("'","")) == -1)
-								throw new InvalidOperationException("could not create the user!");
-							else
-								sendData("Created User ", ref sslStream);
-						}
-						catch(Exception e)
-						{
-							Console.WriteLine("error occured, error details : " + e);
-							sendData("54", ref sslStream);
-						}
+		
 					}
 
 					else if(shouldAnswer && sRequest.Contains("PayUser"))
 					{
-						try
-						{	
-							string[] args = sRequest.Replace("PayUser", "").Split(",");
-							if(sessionManager.validate(client.Client.RemoteEndPoint,args[args.Length - 1],int.Parse(args[0])))
-							{
-								user.GetUserByID(int.Parse(args[0])).transferMoney(int.Parse(args[1]), int.Parse(args[2]));
-								sendData("Successfully passed money around!", ref sslStream);
-							}
-							else
-							{
-								throw new Exception("could not finish money transfer due to account verification failing.");
-							}
-						}
-						catch(Exception e)
-						{
-							Console.WriteLine("error occured, error details : " + e);
-							sendData("could not pass money between the accounts.", ref sslStream);
-						}
+
 					}
 					else if(shouldAnswer && sRequest.Contains("ClearComments"))
 					{
-						user.GetUserByID(0).clearComments();
-						sendData("done.", ref sslStream);
+
 					}
 					else if(shouldAnswer && sRequest.Contains("ReserveBabysitter"))
 					{
-						// https://{serverip}/ReserveBabysitter{targetID},{Date},{eventLength},{reserverID},{sessionID}
-						try
-						{
-							String[] parts = sRequest.Replace("ReserveBabysitter", "").Split(",");
-							user myUser = user.GetUserByID(int.Parse(parts[0]));
-							if(sessionManager.validate(client.Client.RemoteEndPoint,parts[parts.Length - 1],int.Parse(parts[parts.Length - 2])))
-							{
-								myUser.addEvent(parts[1], float.Parse(parts[2]), int.Parse(parts[parts.Length - 2]));
-								sendData("Successfully added event!", ref sslStream);
-							}
-							else
-							{
-								throw new Exception("could not verify user identity, did not add event.");
-							}
-						}
-						catch (Exception ex)
-						{
-							Console.WriteLine("error adding event, error info : " + ex);
-							sendData("could not add event", ref sslStream);
-						}
+
 					}
 					else if(shouldAnswer && sRequest.Contains("GetEvents"))
 					{

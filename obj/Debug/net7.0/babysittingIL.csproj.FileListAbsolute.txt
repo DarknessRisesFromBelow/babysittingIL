@@ -24,3 +24,4 @@ C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\JsonSubType
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\OneSignalApi.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\Polly.dll
 C:\Users\Magshimim\Documents\projects\babysittingIL\bin\Debug\net7.0\RestSharp.dll
+C:\Users\Magshimim\Documents\projects\babysittingIL\obj\Debug\net7.0\babysittingIL.sourcelink.json
