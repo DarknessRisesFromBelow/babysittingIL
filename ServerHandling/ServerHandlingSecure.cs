@@ -150,64 +150,15 @@ namespace babysittingIL.ServerHandling
 					}
 					else if(shouldAnswer && sRequest.Contains("GetEvents"))
 					{
-						try
-						{
-							sRequest = sRequest.Replace("GetEvents", "");
-							string[] parts = sRequest.Split(",");
-							user accref = user.GetUserByID(int.Parse(parts[0]));
-							sendData("" + accref.getEvents(), ref sslStream);	
-						}
-						catch(Exception ex)
-						{
-							Console.WriteLine("error occured, error details : " + ex);
-							sendData("could not get events.", ref sslStream);
-						}
 						
 					}
 					else if(shouldAnswer && sRequest.Contains("GetUserData"))
 					{
-						try
-						{
-							user accref = user.GetUserByID(int.Parse(sRequest.Replace("GetUserData", "")));
-							sendData("Got User Info. <br>" + accref.GetData(), ref sslStream);
-						}
-						catch(Exception e)
-						{
-							Console.WriteLine("error occured, error details : " + e);
-							sendData("57", ref sslStream);
-						}
+
 					}
-	/////////////////////////////	obselete, use AddReview instead.	///////////////////////////// 					
-					else if(shouldAnswer && sRequest.Contains("AddRating"))
-					{
-						try
-						{
-							user accref = user.GetUserByID(int.Parse(sRequest.Replace("AddRating", "").Split(",")[2]));
-							accref.AddScore(int.Parse(sRequest.Replace("AddRating", "").Split(",")[0]),int.Parse(sRequest.Replace("AddRating", "").Split(",")[1]));
-							sendData("added rating!", ref sslStream);	
-						}
-						catch(Exception ex)
-						{
-							Console.WriteLine("error occured, error details : " + ex);
-							sendData("could not add rating!", ref sslStream);	
-						}
-					}
-	//////////////////////////////////////////////////////////////////////////////////////////////////
 					else if (shouldAnswer && sRequest.Contains("setPfp"))
 					{
-						try
-						{
-							sRequest = sRequest.Replace("setPfp", "");
-							string[] args = sRequest.Split(",");
-							user accref = user.GetUserByID(int.Parse(args[0]));
-							accref.SetPFP(args[1]);
-							sendData("Successfully set new pfp", ref sslStream);
-						}
-						catch(Exception ex)
-						{
-							Console.WriteLine("error occured, error details : " + ex);
-							sendData("could not set new pfp", ref sslStream);
-						}
+
 					}
 					else if (shouldAnswer && sRequest.Contains("setRate"))
 					{
