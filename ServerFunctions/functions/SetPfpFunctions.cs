@@ -19,7 +19,7 @@ namespace babysittingIL.ServerFunctions
 	class SetPfpFunction : ServerFunction
 	{
 		public static GetUserDataFunction spf = new();
-		public ClearCommentsFunction()
+		public SetPfpFunction()
 		{
 			this.activation = "setPfp";
 			ServerFunction.functions.Add(this);

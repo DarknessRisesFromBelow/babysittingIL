@@ -19,7 +19,7 @@ namespace babysittingIL.ServerFunctions
 	class GetUserDataFunction : ServerFunction
 	{
 		public static GetUserDataFunction gudf = new();
-		public ClearCommentsFunction()
+		public GetUserDataFunction()
 		{
 			this.activation = "GetUserData";
 			ServerFunction.functions.Add(this);
