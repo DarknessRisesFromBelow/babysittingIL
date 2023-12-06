@@ -8,7 +8,7 @@ namespace YMA.Authorization
 
 	class Auth
 	{
-		public uint login(int cluster, int cID, string Username, string Password)
+		public static uint login(int cluster, int cID, string Username, string Password)
 		{
 			uint perms = Constants.Visitor;
 			AuthAcc acc = ClusterManager.mgr.getUser(cluster, cID);
@@ -18,6 +18,12 @@ namespace YMA.Authorization
 			}
 
 			return perms;
+		}
+
+		public static AuthAcc signUp(string Username, string Password, string Email)
+		{
+			AuthAcc acc = new(Username, Password, Email);
+			return acc;
 		}
 	}
 

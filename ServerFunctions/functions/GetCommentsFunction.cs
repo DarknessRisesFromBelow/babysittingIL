@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class SetPfpFunction : ServerFunction
+	class GetCommentsFunction : ServerFunction
 	{
-		public static SetPfpFunction spf = new();
-		public SetPfpFunction()
+		public static GetCommentsFunction gcf = new();
+		public GetCommentsFunction()
 		{
-			this.activation = "setPfp";
+			this.activation = "getComments";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,18 +29,15 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("setPfp", "");
-				string[] args = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(args[0]));
-				accref.SetPFP(args[1]);
-				return "Successfully set new pfp";
+				sRequest = sRequest.Replace("getComments", "");
+				user accref = user.GetUserByID(int.Parse(sRequest));
+				return "---REVIEWS-START---\n" + accref.GetReviews() + "---REVIEWS-END---";
 			}
 			catch(Exception ex)
 			{
-				Console.WriteLine("error occured, error details : " + ex);
-				return "could not set new pfp";
+				Console.WriteLine(ex);
+				return "REVIEWGETTINGERROR 51";
 			}
 		}
-		
 	}
 }

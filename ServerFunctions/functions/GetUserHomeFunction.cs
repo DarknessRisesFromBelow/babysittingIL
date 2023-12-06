@@ -14,14 +14,16 @@ using babysittingIL.UserExperience;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
+using babysittingIL.ServerHandling;
+
 namespace babysittingIL.ServerFunctions
 {
-	class SetPfpFunction : ServerFunction
+	class GetUserHomeFunction : ServerFunction
 	{
-		public static SetPfpFunction spf = new();
-		public SetPfpFunction()
+		public static GetUserHomeFunction puf = new();
+		public GetUserHomeFunction()
 		{
-			this.activation = "setPfp";
+			this.activation = "GetUserHome";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,18 +31,22 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("setPfp", "");
-				string[] args = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(args[0]));
-				accref.SetPFP(args[1]);
-				return "Successfully set new pfp";
+				sRequest = sRequest.Replace("GetUserHome", "");
+				string[] requestData = sRequest.Split(",");
+				if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
+				{
+					return SecureHandler.manager.GetUserHome(int.Parse(requestData[0]));
+				}
+				else
+				{
+					throw new Exception("could not verify user, did not allow request to happen.");
+				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				Console.WriteLine("error occured, error details : " + ex);
-				return "could not set new pfp";
+				Console.WriteLine(ex);
+				return "invalid user!";
 			}
 		}
-		
 	}
 }

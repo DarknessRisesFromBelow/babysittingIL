@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class SetPfpFunction : ServerFunction
+	class SetBioFunction : ServerFunction
 	{
-		public static SetPfpFunction spf = new();
-		public SetPfpFunction()
+		public static SetBioFunction sbf = new();
+		public SetBioFunction()
 		{
-			this.activation = "setPfp";
+			this.activation = "setBio";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,16 +29,26 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("setPfp", "");
+				string newBio = "";
+				sRequest = sRequest.Replace("setBio", "");
 				string[] args = sRequest.Split(",");
 				user accref = user.GetUserByID(int.Parse(args[0]));
-				accref.SetPFP(args[1]);
-				return "Successfully set new pfp";
+
+				newBio += args[1];
+				for(int q = 2; q < args.Length; q++)
+				{
+					if(args.Length != 2)
+					{
+						newBio += "," + args[q];
+					}
+				}
+				accref.SetBio(newBio);
+				return "Successfully set new bio";
 			}
 			catch(Exception ex)
 			{
 				Console.WriteLine("error occured, error details : " + ex);
-				return "could not set new pfp";
+				return "Could not set new bio";
 			}
 		}
 		

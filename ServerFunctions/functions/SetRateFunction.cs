@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class SetPfpFunction : ServerFunction
+	class SetRateFunction : ServerFunction
 	{
-		public static SetPfpFunction spf = new();
-		public SetPfpFunction()
+		public static SetRateFunction srf = new();
+		public SetRateFunction()
 		{
-			this.activation = "setPfp";
+			this.activation = "setRate";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,16 +29,16 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("setPfp", "");
+				sRequest = sRequest.Replace("setRate", "");
 				string[] args = sRequest.Split(",");
 				user accref = user.GetUserByID(int.Parse(args[0]));
-				accref.SetPFP(args[1]);
-				return "Successfully set new pfp";
+				accref.SetRate(float.Parse(args[1]));
+				return "Successfully set new rate";
 			}
 			catch(Exception ex)
 			{
 				Console.WriteLine("error occured, error details : " + ex);
-				return "could not set new pfp";
+				return "could not set new rate";
 			}
 		}
 		

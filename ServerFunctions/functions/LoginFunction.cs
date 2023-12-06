@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class SetPfpFunction : ServerFunction
+	class LoginFunction : ServerFunction
 	{
-		public static SetPfpFunction spf = new();
-		public SetPfpFunction()
+		public static LoginFunction lf = new();
+		public LoginFunction()
 		{
-			this.activation = "setPfp";
+			this.activation = "login";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,18 +29,21 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("setPfp", "");
-				string[] args = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(args[0]));
-				accref.SetPFP(args[1]);
-				return "Successfully set new pfp";
+				sRequest = sRequest.Replace("login", "");
+				string[] requestData = sRequest.Split(",");
+				Console.WriteLine("attempting to sign in user " + requestData[0]+" with password " + requestData[1]);
+				int id = user.GetIdByName(requestData[0]);
+				Console.WriteLine("id : " + id);
+				user myUser = user.GetUserByID(id);
+				Console.WriteLine(myUser.GetUsername()+"'s password is " + myUser.GetPassword());
+				myUser.login(requestData[1], client.Client.RemoteEndPoint);
+				return "logged in, needed info is " + myUser.getSessionID() + "," + myUser.GetID() + "," + myUser.GetType();
 			}
 			catch(Exception ex)
 			{
 				Console.WriteLine("error occured, error details : " + ex);
-				return "could not set new pfp";
+				return "log in" + ex;
 			}
 		}
-		
 	}
 }

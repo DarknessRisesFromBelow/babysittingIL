@@ -14,13 +14,14 @@ using babysittingIL.UserExperience;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
+
 namespace babysittingIL.ServerFunctions
 {
 	abstract class ServerFunction
 	{
 
 		public static List<ServerFunction> functions = new();
-		protected string activation;
+		public string activation;
 		public abstract string run(string sRequest, TcpClient client);
 		public virtual string getActivation() => activation;
 	}
