@@ -61,6 +61,8 @@ namespace babysittingIL.ServerHandling
 			new SetGeolocationFunction();
 			new SetPfpFunction();
 			new SetRateFunction();
+			new AddUserToClusterFunction();
+			new GetFreeClustersFunction();
 
 			while (true)
 			{

@@ -42,6 +42,14 @@ namespace YMA.Authorization
 			
 			ClusterManager.mgr.addUser(this);
 		}
+
+		public AuthAcc(AuthAcc acc) : base(acc.GetUsername(), acc.GetPassword(), acc.GetEmailAddress())
+		{
+			perms = acc.perms;
+			cluster = acc.cluster;
+			cID = acc.cID;
+			ClusterManager.mgr.addUser(this);
+		}
 	}
 
 	class ClusterManager
@@ -51,7 +59,8 @@ namespace YMA.Authorization
 
 		public ClusterManager(int clusters)
 		{
-			clusters = new();
+			Console.WriteLine("constructor called, cluster count : " + clusters);
+			this.clusters = new();
 			for(int i = 0; i < clusters; i++)
 			{
 				AddCluster();
@@ -80,17 +89,35 @@ namespace YMA.Authorization
 			user.cluster = clusterID;
 		}
 
-		Cluster[] getFreeClusters()
+		public Cluster[] getFreeClusters()
 		{
-			List<Cluster> m_clusters = new();
-			Parallel.For(0, this.clusters.Count ,i=>
+			if(clusters != null)
 			{
-				if(!this.clusters[i].isFull())
+				Console.WriteLine("getFreeClusters called, clusters count: " + clusters.Count);
+
+				List<Cluster> m_clusters = new();
+				Parallel.For(0, this.clusters.Count ,i=>
 				{
-					m_clusters.Add(clusters[i]);
-				}
-			});
-			return m_clusters.ToArray();		
+					if(!this.clusters[i].isFull())
+					{
+						m_clusters.Add(clusters[i]);
+					}
+				});
+
+
+				Parallel.For(0, m_clusters.Count ,i=>
+				{
+					Console.WriteLine("cluster is free, spots left: " + m_clusters[i].emptySpots().Length);
+				});
+				return m_clusters.ToArray();		
+			}
+			else
+			{
+				Console.WriteLine("clusters are null, Adding a new cluster to the list and returning an empty arr");
+				clusters = new();
+				AddCluster();
+				return new Cluster[0];
+			}
 		}
 
 		public AuthAcc getUser(int id, int clusterID)
