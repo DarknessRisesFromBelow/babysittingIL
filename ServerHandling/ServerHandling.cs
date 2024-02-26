@@ -75,18 +75,15 @@ namespace babysittingIL.ServerHandling
 			{  
 				if (mySocket.Connected)  
 				{  
+					Console.WriteLine(bSendData.Length);
 					numBytes = mySocket.Send(bSendData, bSendData.Length, 0);
 					if (numBytes == -1)
 					{
 						Console.WriteLine("Socket Error cannot Send Packet");  
-						mySocket.Shutdown(SocketShutdown.Both);
-						mySocket.Close();
 					}  
 					else  
 					{  
 						Console.WriteLine("No. of bytes send {0}", numBytes);  
-						mySocket.Shutdown(SocketShutdown.Both);
-						mySocket.Close();
 					}  
 				}  
 				else
@@ -95,9 +92,8 @@ namespace babysittingIL.ServerHandling
 			catch (Exception e)  
 			{  
 				Console.WriteLine("Error Occurred : {0} ", e);  
-				mySocket.Shutdown(SocketShutdown.Both);
-				mySocket.Close();
 			}  
+			Thread.Sleep(300);
 		}  
 
 		public void sendData(string sData, ref Socket sock)
@@ -126,7 +122,7 @@ namespace babysittingIL.ServerHandling
 			sBuffer += "Content-Length: " + iTotBytes + "\r\n\r\n";  
 			Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);  
 			SendToBrowser(bSendData, ref mySocket);  
-			//Console.WriteLine("Total Bytes : " + iTotBytes.ToString());  
+			Console.WriteLine("Total Bytes : " + iTotBytes.ToString());  
 		}  
 
 		// write messages to browser (based on presets)
@@ -141,7 +137,7 @@ namespace babysittingIL.ServerHandling
 		{
 			string message = Message;
 			SendHeader(sHttpVersion, "", message.Length, "200 OK", ref mySocket);
-			SendToBrowser(message , ref mySocket);
+			SendToBrowser(message, ref mySocket);
 		}
 
 		public void error (int code, ref Socket mySocket, string sHttpVersion)
@@ -161,6 +157,8 @@ namespace babysittingIL.ServerHandling
 			sBuffer += "Access-Control-Max-Age: 86400\n\n";  
 			Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);  
 			int numBytes = mySocket.Send(bSendData, bSendData.Length, 0);
+			Console.WriteLine("sent " + numBytes + " bytes as a response to preflight request");
+			mySocket.Shutdown(SocketShutdown.Both);
 			//mySocket.Close();
 		}
 
@@ -250,6 +248,8 @@ namespace babysittingIL.ServerHandling
 					error(ex.Message, ref mySocket, "HTTP/1.1");
 				}
 			}
+
+			mySocket.Close();
 		}  
 	}
 }
