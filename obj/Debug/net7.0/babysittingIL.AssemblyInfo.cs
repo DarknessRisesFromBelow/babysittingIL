@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("babysittingIL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14a256dbb60ea9a83873f7540e9a9e37b65abd93")]
 [assembly: System.Reflection.AssemblyProductAttribute("babysittingIL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("babysittingIL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

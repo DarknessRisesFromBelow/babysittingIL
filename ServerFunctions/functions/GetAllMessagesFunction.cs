@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class GetEventsFunction : ServerFunction
+	class GetAllMessagesFunction : ServerFunction
 	{
-		public static CreateUserFunction gef = new();
-		public GetEventsFunction()
+		public static GetAllMessagesFunction gamf = new();
+		public GetAllMessagesFunction()
 		{
-			this.activation = "GetEvents";
+			this.activation = "GetAllMessages";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,16 +29,19 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("GetEvents", "");
-				string[] parts = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(parts[0]));
-				return "" + accref.getEvents();	
+				sRequest = sRequest.Replace("GetAllMessages","");
+				string[] requestData = sRequest.Split(",");
+				if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
+				return "Messages : " + MessagingManager.ReadAll(int.Parse(requestData[0]));
+				else
+				throw new Exception("could not verify user, did not allow request to happen.");
 			}
 			catch(Exception ex)
 			{
-				Console.WriteLine("error occured, error details : " + ex);
-				return "could not get events.";
+				Console.WriteLine(ex);
+				return "invalid User!";
 			}
 		}
+		
 	}
 }

@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class GetEventsFunction : ServerFunction
+	class SetRateFunction : ServerFunction
 	{
-		public static CreateUserFunction gef = new();
-		public GetEventsFunction()
+		public static SetRateFunction srf = new();
+		public SetRateFunction()
 		{
-			this.activation = "GetEvents";
+			this.activation = "setRate";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,16 +29,18 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("GetEvents", "");
-				string[] parts = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(parts[0]));
-				return "" + accref.getEvents();	
+				sRequest = sRequest.Replace("setRate", "");
+				string[] args = sRequest.Split(",");
+				user accref = user.GetUserByID(int.Parse(args[0]));
+				accref.SetRate(float.Parse(args[1]));
+				return "Successfully set new rate";
 			}
 			catch(Exception ex)
 			{
 				Console.WriteLine("error occured, error details : " + ex);
-				return "could not get events.";
+				return "could not set new rate";
 			}
 		}
+		
 	}
 }

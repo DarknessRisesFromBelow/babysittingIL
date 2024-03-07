@@ -509,19 +509,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Magshimim\\.nuget\\packages\\": {}
+    "C:\\Users\\medin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+      "projectUniqueName": "C:\\Users\\medin\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
       "projectName": "babysittingIL",
-      "projectPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
-      "packagesPath": "C:\\Users\\Magshimim\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Magshimim\\Documents\\projects\\babysittingIL\\obj\\",
+      "projectPath": "C:\\Users\\medin\\Documents\\projects\\babysittingIL\\babysittingIL.csproj",
+      "packagesPath": "C:\\Users\\medin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\medin\\Documents\\projects\\babysittingIL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Magshimim\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\medin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -580,7 +580,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },

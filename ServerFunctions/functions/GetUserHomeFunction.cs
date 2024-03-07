@@ -14,14 +14,16 @@ using babysittingIL.UserExperience;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
+using babysittingIL.ServerHandling;
+
 namespace babysittingIL.ServerFunctions
 {
-	class GetEventsFunction : ServerFunction
+	class GetUserHomeFunction : ServerFunction
 	{
-		public static CreateUserFunction gef = new();
-		public GetEventsFunction()
+		public static GetUserHomeFunction puf = new();
+		public GetUserHomeFunction()
 		{
-			this.activation = "GetEvents";
+			this.activation = "GetUserHome";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,15 +31,21 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("GetEvents", "");
-				string[] parts = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(parts[0]));
-				return "" + accref.getEvents();	
+				sRequest = sRequest.Replace("GetUserHome", "");
+				string[] requestData = sRequest.Split(",");
+				if(sessionManager.validate(client.Client.RemoteEndPoint,requestData[1],int.Parse(requestData[0])))
+				{
+					return SecureHandler.manager.GetUserHome(int.Parse(requestData[0]));
+				}
+				else
+				{
+					throw new Exception("could not verify user, did not allow request to happen.");
+				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
-				Console.WriteLine("error occured, error details : " + ex);
-				return "could not get events.";
+				Console.WriteLine(ex);
+				return "invalid user!";
 			}
 		}
 	}

@@ -8,6 +8,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;  
 using System.Text;  
 using System.Threading;
+using YMA.Authorization;
 using babysittingIL.storingManagement;
 using babysittingIL.UserManagement;
 using babysittingIL.UserExperience;
@@ -16,28 +17,26 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class GetEventsFunction : ServerFunction
+	class GetFreeClustersFunction : ServerFunction
 	{
-		public static CreateUserFunction gef = new();
-		public GetEventsFunction()
+		public static GetFreeClustersFunction gfcf = new();
+		public GetFreeClustersFunction()
 		{
-			this.activation = "GetEvents";
+			this.activation = "GetFreeClusters";
 			ServerFunction.functions.Add(this);
 		}
 		
 		public override string run(string sRequest, TcpClient client)
-		{
+		{						
 			try
 			{
-				sRequest = sRequest.Replace("GetEvents", "");
-				string[] parts = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(parts[0]));
-				return "" + accref.getEvents();	
+				Cluster[] arr = ClusterManager.mgr.getFreeClusters();
+				return "free clusters : " + arr.Length;
 			}
 			catch(Exception ex)
 			{
-				Console.WriteLine("error occured, error details : " + ex);
-				return "could not get events.";
+				Console.WriteLine(ex);
+				return "could not get free clusters";
 			}
 		}
 	}

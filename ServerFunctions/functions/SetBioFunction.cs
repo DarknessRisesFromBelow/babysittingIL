@@ -16,12 +16,12 @@ using babysittingIL.UserManagement.location;
 using babysittingIL.sessionManagement;
 namespace babysittingIL.ServerFunctions
 {
-	class GetEventsFunction : ServerFunction
+	class SetBioFunction : ServerFunction
 	{
-		public static CreateUserFunction gef = new();
-		public GetEventsFunction()
+		public static SetBioFunction sbf = new();
+		public SetBioFunction()
 		{
-			this.activation = "GetEvents";
+			this.activation = "setBio";
 			ServerFunction.functions.Add(this);
 		}
 		
@@ -29,16 +29,28 @@ namespace babysittingIL.ServerFunctions
 		{
 			try
 			{
-				sRequest = sRequest.Replace("GetEvents", "");
-				string[] parts = sRequest.Split(",");
-				user accref = user.GetUserByID(int.Parse(parts[0]));
-				return "" + accref.getEvents();	
+				string newBio = "";
+				sRequest = sRequest.Replace("setBio", "");
+				string[] args = sRequest.Split(",");
+				user accref = user.GetUserByID(int.Parse(args[0]));
+
+				newBio += args[1];
+				for(int q = 2; q < args.Length; q++)
+				{
+					if(args.Length != 2)
+					{
+						newBio += "," + args[q];
+					}
+				}
+				accref.SetBio(newBio);
+				return "Successfully set new bio";
 			}
 			catch(Exception ex)
 			{
 				Console.WriteLine("error occured, error details : " + ex);
-				return "could not get events.";
+				return "Could not set new bio";
 			}
 		}
+		
 	}
 }

@@ -1,4 +1,5 @@
 using YMA.Management;
+using YMA.Authorization;
 using babysittingIL.Constants;
 using babysittingIL.Messaging;
 using babysittingIL.UserManagement.location;
@@ -21,27 +22,33 @@ namespace babysittingIL.UserManagement
 	public class user
 	{
 		UserType userType;
-		Account acc;
 		public string profilePicURL;
-		public int score = 0;
-		public int reviews = 0;
-		public float rating = 0.0f;
-		float rate = 25.7f;
+		public int score;
+		public int reviews;
+		public float rating;
+		float rate;
 		locationObject location;
 		public static List<user> users = new();
-		bool LoggedIn = false;
-		string sessionID = "";
-		string bio = "Hey There, I Am using BabysittingIL!";
-
+		bool LoggedIn;
+		string sessionID;
+		string bio;
+		uint perms;
+		AuthAcc acc;
 
 
 		public user(int Type, string name, string email, string password, string pfpURL = Consts.defaultPfpURL)
 		{	
 			profilePicURL = pfpURL;
 			userType = Type == 1 ? UserType.Babysitter : UserType.Parent ;
-			acc = RegistrationManager.CreateAccount(name, password,email);
+			acc = Auth.signUp(name, password,email);
 			location = new((1,0));
 			MessagingManager.Lists.Add(new());
+			score = 0;
+			reviews = 0;
+			rating = 0.0f;
+			rate = 25.7f;
+			sessionID = "";
+			bio = "Hey There, I Am using BabysittingIL!";
 			users.Add(this);
 			Console.WriteLine("added user to user list.");
 			reviewManager.AddUser(GetID());
@@ -173,6 +180,7 @@ namespace babysittingIL.UserManagement
 			}
 			return -1;
 		}
+
 		public static user GetUserByID(int id)
 		{
 			for(int i = 0; i < GeneralManagement.activeAccounts.Count; i++)
@@ -184,6 +192,7 @@ namespace babysittingIL.UserManagement
 			}
 			return NotAUser;
 		}
+		
 		public string GetData() => "" + GetUsername() + "," + GetRating() + "," + GetPFP() +","+ GetBio() + "," + GetRate() + "," + GetID();
 	}
 }
